@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <fragment 
+        	xmlns:android="http://schemas.android.com/apk/res/android"
+        	class="com.stock.NavigationFragment"
+            android:id="@+id/frag_navigation"
+            android:layout_width="300dp"
+            android:layout_height="match_parent" >
+    </fragment>
+
