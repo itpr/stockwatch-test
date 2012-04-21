@@ -34,6 +34,13 @@ withOperation(new OperationKey("yA2BYFu51jzdpFUJpoDXcXgl_wE="),
   .withMethodName("unregister")
   .withRequestContext("com.stock.client.MyRequestFactory$RegistrationInfoRequest")
   .build());
+withOperation(new OperationKey("syLLYGITnk1g6mFc1lDsGgSVe7Q="),
+  new OperationData.Builder()
+  .withClientMethodDescriptor("(J)Lcom/google/web/bindery/requestfactory/shared/Request;")
+  .withDomainMethodDescriptor("(J)Ljava/util/List;")
+  .withMethodName("getChildrens")
+  .withRequestContext("com.stock.client.MyRequestFactory$StockRequest")
+  .build());
 withOperation(new OperationKey("30rldlr_p6dBvoBRsQ6Nd$flH94="),
   new OperationData.Builder()
   .withClientMethodDescriptor("(Lcom/stock/shared/StockProxy;)Lcom/google/web/bindery/requestfactory/shared/Request;")

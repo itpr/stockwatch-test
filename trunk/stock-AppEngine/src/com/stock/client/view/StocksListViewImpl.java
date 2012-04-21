@@ -29,6 +29,8 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
 import com.stock.server.entities.Stock;
 import com.stock.shared.StockProxy;
 
@@ -41,7 +43,8 @@ public class StocksListViewImpl extends Composite implements StocksListView {
 	}
 	
 	private static final Binder binder = GWT.create(Binder.class);
-
+	private StockProxy selected;
+	private final SingleSelectionModel<StockProxy> selectionModel;
 	private Presenter listener;
 	
 	@UiField(provided = true)
@@ -60,6 +63,21 @@ public class StocksListViewImpl extends Composite implements StocksListView {
 	    StockCell stockCell = new StockCell();
 	    stocksList = new CellList<StockProxy>(stockCell);
 		
+	    
+	    selectionModel = new SingleSelectionModel<StockProxy>();
+	    stocksList.setSelectionModel(selectionModel);
+	    selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+	      public void onSelectionChange(SelectionChangeEvent event) {
+	        selected = selectionModel.getSelectedObject();
+	        if (selected != null) {
+	        	listener.onCellSelected(selected.getId());
+	        }
+	        
+	      }
+	    });
+
+	    
+	    
 		initWidget(binder.createAndBindUi(this));
 	}
 
@@ -78,6 +96,11 @@ public class StocksListViewImpl extends Composite implements StocksListView {
 	@Override
 	public void setListName(String txt){
 		listName.setText(txt);
+	}
+	
+	@Override
+	public void unselect(){
+		selectionModel.setSelected(selected, false);
 	}
 	
 	@UiHandler("nextButton")

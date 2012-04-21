@@ -53,10 +53,9 @@ public class StocksListActivity extends AbstractActivity implements StocksListVi
 	
 	private int currentList = 0;
 	
-	StocksListView view;
+	private StocksListView view;
 
 	public StocksListActivity(Place place, ClientFactory clientFactory) {
-		this.name = ((ChartPlace)place).getName();
 		this.clientFactory = clientFactory;
 	}
 
@@ -84,6 +83,11 @@ public class StocksListActivity extends AbstractActivity implements StocksListVi
 	        }
 	      }, 1000*60*3);*/
 		
+	}
+	
+	@Override
+	public void onStop(){
+		view.unselect();
 	}
 
 
@@ -168,6 +172,11 @@ public class StocksListActivity extends AbstractActivity implements StocksListVi
 			fillStockList(userLists.get(currentList).getStocks());
 			view.setListName(userLists.get(currentList).getName());
 		}
+	}
+
+	@Override
+	public void onCellSelected(long id) {
+		goTo(new ChartPlace(Long.toString(id)));
 	}
 	
 }

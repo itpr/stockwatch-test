@@ -16,6 +16,7 @@
   <inherits name='com.google.web.bindery.requestfactory.RequestFactory'/>
   <inherits name="com.google.gwt.place.Place"/>
   <inherits name="com.google.gwt.activity.Activity"/>
+  <inherits name='com.google.gwt.visualization.Visualization'/>
 
   <!-- Specify the app entry point class.                             -->
   <entry-point class='com.stock.client.Stock'/>

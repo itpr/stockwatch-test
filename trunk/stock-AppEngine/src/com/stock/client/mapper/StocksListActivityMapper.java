@@ -20,7 +20,7 @@ public class StocksListActivityMapper implements ActivityMapper {
 
 	public Activity getActivity(Place place) {
 		
-			return new StocksListActivity(new ChartPlace("0"), clientFactory);
+			return new StocksListActivity(place, clientFactory);
 		
 	}
 

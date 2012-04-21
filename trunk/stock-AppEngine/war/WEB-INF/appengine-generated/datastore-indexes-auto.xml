@@ -1,4 +1,11 @@
-<!-- Indices written at Sun, 1 Apr 2012 15:37:35 UTC -->
+<!-- Indices written at Sat, 21 Apr 2012 16:24:02 CEST -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 2 times in query history -->
+    <datastore-index kind="Quote" ancestor="false" source="auto">
+        <property name="symbol" direction="asc"/>
+        <property name="date" direction="desc"/>
+    </datastore-index>
+
+</datastore-indexes>

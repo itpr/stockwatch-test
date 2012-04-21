@@ -21,6 +21,7 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
 import com.google.web.bindery.requestfactory.shared.ServiceName;
+import com.stock.server.entities.Quote;
 import com.stock.shared.MessageProxy;
 import com.stock.shared.QuoteProxy;
 import com.stock.shared.RegistrationInfoProxy;
@@ -66,6 +67,7 @@ public interface MyRequestFactory extends RequestFactory {
     Request<List<StockProxy>> getAllWithChildren();
     Request<List<QuoteProxy>> getChildren(StockProxy ss);
     Request<QuoteProxy> getChildren(long id);
+    Request<List<QuoteProxy>> getChildrens(long id);
   }
   
 

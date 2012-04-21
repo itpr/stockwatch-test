@@ -39,7 +39,11 @@ public interface StocksListView extends IsWidget {
 		void onNextButtonClick();
 
 		void onPrevButtonClick();
+		
+		void onCellSelected(long id);
 	}
 
 	void setListName(String txt);
+
+	void unselect();
 }

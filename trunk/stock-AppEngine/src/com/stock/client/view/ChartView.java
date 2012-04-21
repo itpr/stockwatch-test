@@ -16,6 +16,7 @@ package com.stock.client.view;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.visualization.client.visualizations.corechart.LineChart;
 
 /**
  * View base interface.
@@ -32,4 +33,6 @@ public interface ChartView extends IsWidget {
 		 */
 		void goTo(Place place);
 	}
+
+	void addChart(LineChart ch);
 }

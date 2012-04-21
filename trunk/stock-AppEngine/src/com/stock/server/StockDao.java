@@ -43,9 +43,15 @@ public class StockDao extends DAOBase
         return children.list();  
     }  
     
+    public List<Quote> getChildrens(long id){
+    	Objectify ofy = ofy();
+    	List<Quote> qt = ofy.query(Quote.class).filter("symbol", id).order("-date").limit(10).list();
+    	return qt;
+    }
+    
     public Quote getChildren(long id){
     	Objectify ofy = ofy();
-    	Quote qt = ofy.query(Quote.class).filter("symbol", id).order("-id").get();
+    	Quote qt = ofy.query(Quote.class).filter("symbol", id).order("-date").get();
     	return qt;
     }
 

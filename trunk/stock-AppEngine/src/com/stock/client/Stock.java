@@ -52,7 +52,7 @@ public class Stock implements EntryPoint {
 	interface Binder extends UiBinder<DockLayoutPanel, Stock> { }
 	private static final Binder binder = GWT.create(Binder.class);
 	
-	private Place defaultPlace = new ChartPlace("0");
+	private Place defaultPlace = new ChartPlace("1");
 	
 	@UiField OneWidgetLayoutPanel actionBarPanel;
 	@UiField OneWidgetLayoutPanel stocksListPanel;

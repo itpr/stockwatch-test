@@ -20,7 +20,10 @@ public class QuoteDao extends DAOBase
 
 	public void save(Quote entity){
 		Objectify ofy = ofy();
-		ofy.put(entity);
+		Quote qt = ofy.query(Quote.class).filter("symbol", entity.getSymbol()).filter("date", entity.getDate()).get();
+		if(qt==null){
+			ofy.put(entity);
+		}
 	}
 	
 	public List<Quote> getAll(){
