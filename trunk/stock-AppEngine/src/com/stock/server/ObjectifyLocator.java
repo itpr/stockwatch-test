@@ -4,9 +4,7 @@ import com.google.web.bindery.requestfactory.shared.Locator;
 import com.stock.server.entities.DatastoreObject;
 
 
-/**
- * Generic @Locator for objects that extend DatastoreObject
- */
+
 public class ObjectifyLocator extends Locator<DatastoreObject, Long> {
   @Override
   public DatastoreObject create(Class<? extends DatastoreObject> clazz) {

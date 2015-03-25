@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package com.stock;
 
@@ -23,6 +9,7 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.AbsListView;
@@ -42,7 +29,7 @@ public class StocksFragment extends ListFragment {
 
 	public StocksFragment(){
 		
-	}
+	} 
 	
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -71,7 +58,21 @@ public class StocksFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        
+    	ChartFragment chartFragment = (ChartFragment)getSupportFragmentManager().findFragmentByTag("chartFrag");
+    	NavigationFragment navFrag = (NavigationFragment)getSupportFragmentManager().findFragmentByTag("navFrag");
+    	StocksFragment stockFrag = (StocksFragment)getSupportFragmentManager().findFragmentByTag("stockFrag");
+    	Long itemId = ((StockAdapter)getListAdapter()).getItemId(position);
+    	FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+    	fragmentTransaction.detach(stockFrag);
+    	fragmentTransaction.detach(navFrag);
+    	if(chartFragment==null){
+    		chartFragment = new ChartFragment(itemId);
+    		fragmentTransaction.add(R.id.main, chartFragment, "chartFrag");
+    	}else{
+    		chartFragment.setChartId(itemId);
+    		fragmentTransaction.attach(chartFragment);
+    	}
+    	fragmentTransaction.commit();
     }
 
 

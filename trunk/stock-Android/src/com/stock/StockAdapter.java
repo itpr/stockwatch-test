@@ -88,7 +88,7 @@ public class StockAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
-		return position;
+		return items.get(position).getId();
 	}
 	
 	public String getUserListName(){

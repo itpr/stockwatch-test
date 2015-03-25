@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2010 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package com.actionbarsherlock.internal.view.menu;
 
 import com.actionbarsherlock.internal.widget.IcsLinearLayout;
@@ -25,9 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 
-/**
- * @hide
- */
+
 public class ActionMenuView extends IcsLinearLayout implements MenuBuilder.ItemInvoker, MenuView {
     //UNUSED private static final String TAG = "ActionMenuView";
 
@@ -309,19 +293,7 @@ public class ActionMenuView extends IcsLinearLayout implements MenuBuilder.ItemI
         //UNUSED mMeasuredExtraWidth = cellsRemaining * cellSize;
     }
 
-    /**
-     * Measure a child view to fit within cell-based formatting. The child's width
-     * will be measured to a whole multiple of cellSize.
-     *
-     * <p>Sets the expandable and cellsUsed fields of LayoutParams.
-     *
-     * @param child Child to measure
-     * @param cellSize Size of one cell
-     * @param cellsRemaining Number of cells remaining that this view can expand to fill
-     * @param parentHeightMeasureSpec MeasureSpec used by the parent view
-     * @param parentHeightPadding Padding present in the parent view
-     * @return Number of cells this child was measured to occupy
-     */
+    
     static int measureChildForCells(View child, int cellSize, int cellsRemaining,
             int parentHeightMeasureSpec, int parentHeightPadding) {
         final LayoutParams lp = (LayoutParams) child.getLayoutParams();

@@ -1,40 +1,19 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package android.support.v4.view;
 
 import android.view.KeyEvent;
 
-/**
- * Helper for accessing features in {@link KeyEvent} introduced after
- * API level 4 in a backwards compatible fashion.
- */
+
 public class KeyEventCompat {
-    /**
-     * Interface for the full API.
-     */
+    
     interface KeyEventVersionImpl {
         public int normalizeMetaState(int metaState);
         public boolean metaStateHasModifiers(int metaState, int modifiers);
         public boolean metaStateHasNoModifiers(int metaState);
     }
 
-    /**
-     * Interface implementation that doesn't use anything about v4 APIs.
-     */
+    
     static class BaseKeyEventVersionImpl implements KeyEventVersionImpl {
         private static final int META_MODIFIER_MASK =
                 KeyEvent.META_SHIFT_ON | KeyEvent.META_SHIFT_LEFT_ON | KeyEvent.META_SHIFT_RIGHT_ON
@@ -89,9 +68,7 @@ public class KeyEventCompat {
         }
     }
 
-    /**
-     * Interface implementation for devices with at least v11 APIs.
-     */
+    
     static class HoneycombKeyEventVersionImpl implements KeyEventVersionImpl {
         @Override
         public int normalizeMetaState(int metaState) {
@@ -109,9 +86,7 @@ public class KeyEventCompat {
         }
     }
 
-    /**
-     * Select the correct implementation to use for the current platform.
-     */
+    
     static final KeyEventVersionImpl IMPL;
     static {
         if (android.os.Build.VERSION.SDK_INT >= 11) {

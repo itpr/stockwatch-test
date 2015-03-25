@@ -50,15 +50,7 @@ public class AsyncFetchStock extends AsyncTask<Long, Void, List<StockProxy>> {
 			});
 		} else {
 			newStock = true;
-			/*factory.stockWatchRequest().readStock(arguments[0])
-					.fire(new Receiver<StockProxy>() {
-
-						@Override
-						public void onSuccess(StockProxy arg0) {
-							list.add(arg0);
-
-						}
-					});*/
+			
 		}
 
 		return list;

@@ -1,18 +1,4 @@
-/*
- * Copyright 2011 Jake Wharton
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package com.actionbarsherlock.internal.app;
 
@@ -34,12 +20,7 @@ public final class ActionBarWrapper {
     //No instances
     private ActionBarWrapper() {}
 
-    /**
-     * Abstraction to get an instance of our implementing class.
-     *
-     * @param activity Parent activity.
-     * @return {@code ActionBar} instance.
-     */
+    
     public static ActionBar createFor(Activity activity) {
         if (!(activity instanceof SherlockActivity)) {
             throw new RuntimeException("Activity must implement the SherlockActivity interface");
@@ -48,11 +29,9 @@ public final class ActionBarWrapper {
         return new ActionBarWrapper.Impl(activity);
     }
 
-    /**
-     * Handler for Android's native {@link android.app.ActionBar}.
-     */
+    
     public static final class Impl extends ActionBar implements android.app.ActionBar.TabListener {
-        /** Mapping between support listeners and native listeners. */
+        
         private final HashMap<OnMenuVisibilityListener, android.app.ActionBar.OnMenuVisibilityListener> mMenuListenerMap = new HashMap<OnMenuVisibilityListener, android.app.ActionBar.OnMenuVisibilityListener>();
 
         private final Activity mActivity;
@@ -62,22 +41,12 @@ public final class ActionBarWrapper {
         }
 
 
-        /**
-         * Get the native {@link ActionBar} instance.
-         *
-         * @return The action bar.
-         */
+        
         private android.app.ActionBar getActionBar() {
             return mActivity.getActionBar();
         }
 
-        /**
-         * Converts our Tab wrapper to a native version containing the wrapper
-         * instance as its tag.
-         *
-         * @param tab Tab wrapper instance.
-         * @return Native tab.
-         */
+        
         private android.app.ActionBar.Tab convertTabToNative(ActionBar.Tab tab) {
             return getActionBar().newTab()
                     .setCustomView(tab.getCustomView())

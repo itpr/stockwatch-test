@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package android.support.v4.content;
 
@@ -29,20 +15,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-/**
- * Helper to register for and send broadcasts of Intents to local objects
- * within your process.  This is has a number of advantages over sending
- * global broadcasts with {@link android.content.Context#sendBroadcast}:
- * <ul>
- * <li> You know that the data you are broadcasting won't leave your app, so
- * don't need to worry about leaking private data.
- * <li> It is not possible for other applications to send these broadcasts to
- * your app, so you don't need to worry about having security holes they can
- * exploit.
- * <li> It is more efficient than sending a global broadcast through the
- * system.
- * </ul>
- */
+
 public class LocalBroadcastManager {
     private static class ReceiverRecord {
         final IntentFilter filter;
@@ -122,14 +95,7 @@ public class LocalBroadcastManager {
         };
     }
 
-    /**
-     * Register a receive for any local broadcasts that match the given IntentFilter.
-     *
-     * @param receiver The BroadcastReceiver to handle the broadcast.
-     * @param filter Selects the Intent broadcasts to be received.
-     *
-     * @see #unregisterReceiver
-     */
+    
     public void registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
         synchronized (mReceivers) {
             ReceiverRecord entry = new ReceiverRecord(filter, receiver);
@@ -151,15 +117,7 @@ public class LocalBroadcastManager {
         }
     }
 
-    /**
-     * Unregister a previously registered BroadcastReceiver.  <em>All</em>
-     * filters that have been registered for this BroadcastReceiver will be
-     * removed.
-     *
-     * @param receiver The BroadcastReceiver to unregister.
-     *
-     * @see #registerReceiver
-     */
+    
     public void unregisterReceiver(BroadcastReceiver receiver) {
         synchronized (mReceivers) {
             ArrayList<IntentFilter> filters = mReceivers.remove(receiver);
@@ -187,16 +145,7 @@ public class LocalBroadcastManager {
         }
     }
 
-    /**
-     * Broadcast the given intent to all interested BroadcastReceivers.  This
-     * call is asynchronous; it returns immediately, and you will continue
-     * executing while the receivers are run.
-     *
-     * @param intent The Intent to broadcast; all receivers matching this
-     *     Intent will receive the broadcast.
-     *
-     * @see #registerReceiver
-     */
+    
     public boolean sendBroadcast(Intent intent) {
         synchronized (mReceivers) {
             final String action = intent.getAction();
@@ -268,11 +217,7 @@ public class LocalBroadcastManager {
         return false;
     }
 
-    /**
-     * Like {@link #sendBroadcast(Intent)}, but if there are any receivers for
-     * the Intent this function will block and immediately dispatch them before
-     * returning.
-     */
+    
     public void sendBroadcastSync(Intent intent) {
         if (sendBroadcast(intent)) {
             executePendingBroadcasts();

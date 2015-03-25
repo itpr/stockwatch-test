@@ -374,41 +374,43 @@ containing a value of this type.
         public static final int abs__textButton=0x7f040019;
         public static final int abs__up=0x7f040010;
         public static final int addButton=0x7f04001f;
-        public static final int checkBox1=0x7f040038;
-        public static final int connect=0x7f040028;
-        public static final int connect_footer=0x7f040027;
-        public static final int connect_text=0x7f040023;
-        public static final int disconnect=0x7f04002b;
-        public static final int disconnect_footer=0x7f04002a;
-        public static final int disconnect_text=0x7f040029;
-        public static final int divider=0x7f040025;
+        public static final int chartlayout=0x7f040023;
+        public static final int checkBox1=0x7f04003a;
+        public static final int connect=0x7f04002a;
+        public static final int connect_footer=0x7f040029;
+        public static final int connect_text=0x7f040025;
+        public static final int disconnect=0x7f04002d;
+        public static final int disconnect_footer=0x7f04002c;
+        public static final int disconnect_text=0x7f04002b;
+        public static final int divider=0x7f040027;
         public static final int editText1=0x7f04001e;
         public static final int frag_adduserlist=0x7f040020;
-        public static final int frag_navigation=0x7f040033;
-        public static final int frag_stocks=0x7f040036;
+        public static final int frag_chart=0x7f040022;
+        public static final int frag_navigation=0x7f040035;
+        public static final int frag_stocks=0x7f040038;
         public static final int frag_userstocks=0x7f040021;
-        public static final int header=0x7f040022;
-        public static final int hello_world=0x7f04002e;
-        public static final int hello_world_info=0x7f04002c;
+        public static final int header=0x7f040024;
+        public static final int hello_world=0x7f040030;
+        public static final int hello_world_info=0x7f04002e;
         public static final int homeAsUp=0x7f040006;
-        public static final int linearLayout1=0x7f040030;
+        public static final int linearLayout1=0x7f040032;
         public static final int linearLayout2=0x7f04001d;
         public static final int listMode=0x7f040002;
-        public static final int main=0x7f040037;
-        public static final int nextButton=0x7f040035;
+        public static final int main=0x7f040039;
+        public static final int nextButton=0x7f040037;
         public static final int normal=0x7f040001;
-        public static final int prevButton=0x7f040034;
-        public static final int say_hello=0x7f04002d;
-        public static final int select_account=0x7f040026;
-        public static final int select_text=0x7f040024;
+        public static final int prevButton=0x7f040036;
+        public static final int say_hello=0x7f04002f;
+        public static final int select_account=0x7f040028;
+        public static final int select_text=0x7f040026;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
-        public static final int stockName=0x7f040039;
+        public static final int stockName=0x7f04003b;
         public static final int tabMode=0x7f040003;
-        public static final int taskTitle=0x7f04002f;
-        public static final int textView1=0x7f040031;
-        public static final int textView2=0x7f040032;
+        public static final int taskTitle=0x7f040031;
+        public static final int textView1=0x7f040033;
+        public static final int textView2=0x7f040034;
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
     }
@@ -431,15 +433,17 @@ containing a value of this type.
         public static final int adduserlist=0x7f03000c;
         public static final int adduserlistfrag=0x7f03000d;
         public static final int adduserstocksfrag=0x7f03000e;
-        public static final int connect=0x7f03000f;
-        public static final int disconnect=0x7f030010;
-        public static final int hello_world=0x7f030011;
-        public static final int listitem=0x7f030012;
-        public static final int navfrag=0x7f030013;
-        public static final int navigation=0x7f030014;
-        public static final int stockfrag=0x7f030015;
-        public static final int stocklist=0x7f030016;
-        public static final int userlistitem=0x7f030017;
+        public static final int chartfrag=0x7f03000f;
+        public static final int chartlayout=0x7f030010;
+        public static final int connect=0x7f030011;
+        public static final int disconnect=0x7f030012;
+        public static final int hello_world=0x7f030013;
+        public static final int listitem=0x7f030014;
+        public static final int navfrag=0x7f030015;
+        public static final int navigation=0x7f030016;
+        public static final int stockfrag=0x7f030017;
+        public static final int stocklist=0x7f030018;
+        public static final int userlistitem=0x7f030019;
     }
     public static final class menu {
         public static final int main_menu=0x7f0b0000;
@@ -662,7 +666,7 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name android:abBackground
+          @attr name com.stock:abBackground
         */
         public static final int SherlockTheme_abBackground = 32;
         /**
@@ -674,7 +678,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name android:abBackgroundStacked
+          @attr name com.stock:abBackgroundStacked
         */
         public static final int SherlockTheme_abBackgroundStacked = 33;
         /**
@@ -684,7 +688,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:abCustomNavigationLayout
+          @attr name com.stock:abCustomNavigationLayout
         */
         public static final int SherlockTheme_abCustomNavigationLayout = 34;
         /**
@@ -704,7 +708,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>showTitle</code></td><td>0x8</td><td></td></tr>
 <tr><td><code>showCustom</code></td><td>0x10</td><td></td></tr>
 </table>
-          @attr name android:abDisplayOptions
+          @attr name com.stock:abDisplayOptions
         */
         public static final int SherlockTheme_abDisplayOptions = 24;
         /**
@@ -716,7 +720,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name android:abDivider
+          @attr name com.stock:abDivider
         */
         public static final int SherlockTheme_abDivider = 31;
         /**
@@ -729,7 +733,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
-          @attr name android:abHeight
+          @attr name com.stock:abHeight
         */
         public static final int SherlockTheme_abHeight = 35;
         /**
@@ -739,7 +743,7 @@ in (inches), mm (millimeters).
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:abHomeLayout
+          @attr name com.stock:abHomeLayout
         */
         public static final int SherlockTheme_abHomeLayout = 36;
         /**
@@ -749,7 +753,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:abIcon
+          @attr name com.stock:abIcon
         */
         public static final int SherlockTheme_abIcon = 29;
         /**
@@ -759,7 +763,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:abIndeterminateProgressStyle
+          @attr name com.stock:abIndeterminateProgressStyle
         */
         public static final int SherlockTheme_abIndeterminateProgressStyle = 38;
         /**
@@ -775,7 +779,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:abItemPadding
+          @attr name com.stock:abItemPadding
         */
         public static final int SherlockTheme_abItemPadding = 40;
         /**
@@ -785,7 +789,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:abLogo
+          @attr name com.stock:abLogo
         */
         public static final int SherlockTheme_abLogo = 30;
         /**
@@ -803,7 +807,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>listMode</code></td><td>1</td><td></td></tr>
 <tr><td><code>tabMode</code></td><td>2</td><td></td></tr>
 </table>
-          @attr name android:abNavigationMode
+          @attr name com.stock:abNavigationMode
         */
         public static final int SherlockTheme_abNavigationMode = 23;
         /**
@@ -819,7 +823,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:abProgressBarPadding
+          @attr name com.stock:abProgressBarPadding
         */
         public static final int SherlockTheme_abProgressBarPadding = 39;
         /**
@@ -829,7 +833,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:abProgressBarStyle
+          @attr name com.stock:abProgressBarStyle
         */
         public static final int SherlockTheme_abProgressBarStyle = 37;
         /**
@@ -843,7 +847,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:abSubtitle
+          @attr name com.stock:abSubtitle
         */
         public static final int SherlockTheme_abSubtitle = 26;
         /**
@@ -853,7 +857,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:abSubtitleTextStyle
+          @attr name com.stock:abSubtitleTextStyle
         */
         public static final int SherlockTheme_abSubtitleTextStyle = 28;
         /**
@@ -867,7 +871,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:abTitle
+          @attr name com.stock:abTitle
         */
         public static final int SherlockTheme_abTitle = 25;
         /**
@@ -877,7 +881,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:abTitleTextStyle
+          @attr name com.stock:abTitleTextStyle
         */
         public static final int SherlockTheme_abTitleTextStyle = 27;
         /**
@@ -903,7 +907,7 @@ containing a value of this type.
 <tr><td><code>wrap_content</code></td><td>0</td><td></td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name android:actionBarSize
+          @attr name com.stock:actionBarSize
         */
         public static final int SherlockTheme_actionBarSize = 7;
         /**
@@ -913,7 +917,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionBarTabBarStyle
+          @attr name com.stock:actionBarTabBarStyle
         */
         public static final int SherlockTheme_actionBarTabBarStyle = 3;
         /**
@@ -923,7 +927,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionBarTabStyle
+          @attr name com.stock:actionBarTabStyle
         */
         public static final int SherlockTheme_actionBarTabStyle = 2;
         /**
@@ -933,7 +937,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionBarTabTextStyle
+          @attr name com.stock:actionBarTabTextStyle
         */
         public static final int SherlockTheme_actionBarTabTextStyle = 4;
         /**
@@ -943,7 +947,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionButtonStyle
+          @attr name com.stock:actionButtonStyle
         */
         public static final int SherlockTheme_actionButtonStyle = 1;
         /**
@@ -953,7 +957,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionDropDownStyle
+          @attr name com.stock:actionDropDownStyle
         */
         public static final int SherlockTheme_actionDropDownStyle = 0;
         /**
@@ -963,7 +967,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionHomeButtonStyle
+          @attr name com.stock:actionHomeButtonStyle
         */
         public static final int SherlockTheme_actionHomeButtonStyle = 6;
         /**
@@ -973,7 +977,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionMenuTextAppearance
+          @attr name com.stock:actionMenuTextAppearance
         */
         public static final int SherlockTheme_actionMenuTextAppearance = 8;
         /**
@@ -985,7 +989,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-          @attr name android:actionMenuTextColor
+          @attr name com.stock:actionMenuTextColor
         */
         public static final int SherlockTheme_actionMenuTextColor = 9;
         /**
@@ -995,7 +999,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionModeBackground
+          @attr name com.stock:actionModeBackground
         */
         public static final int SherlockTheme_actionModeBackground = 11;
         /**
@@ -1005,7 +1009,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionModeCloseButtonStyle
+          @attr name com.stock:actionModeCloseButtonStyle
         */
         public static final int SherlockTheme_actionModeCloseButtonStyle = 10;
         /**
@@ -1015,7 +1019,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionModeCloseDrawable
+          @attr name com.stock:actionModeCloseDrawable
         */
         public static final int SherlockTheme_actionModeCloseDrawable = 12;
         /**
@@ -1025,7 +1029,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionOverflowButtonStyle
+          @attr name com.stock:actionOverflowButtonStyle
         */
         public static final int SherlockTheme_actionOverflowButtonStyle = 5;
         /**
@@ -1035,7 +1039,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionSpinnerItemStyle
+          @attr name com.stock:actionSpinnerItemStyle
         */
         public static final int SherlockTheme_actionSpinnerItemStyle = 18;
         /**
@@ -1045,7 +1049,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:dropDownListViewStyle
+          @attr name com.stock:dropDownListViewStyle
         */
         public static final int SherlockTheme_dropDownListViewStyle = 15;
         /**
@@ -1061,7 +1065,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:dropdownListPreferredItemHeight
+          @attr name com.stock:dropdownListPreferredItemHeight
         */
         public static final int SherlockTheme_dropdownListPreferredItemHeight = 17;
         /**
@@ -1071,7 +1075,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:homeAsUpIndicator
+          @attr name com.stock:homeAsUpIndicator
         */
         public static final int SherlockTheme_homeAsUpIndicator = 13;
         /**
@@ -1081,7 +1085,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:popupMenuStyle
+          @attr name com.stock:popupMenuStyle
         */
         public static final int SherlockTheme_popupMenuStyle = 16;
         /**
@@ -1091,7 +1095,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:selectableItemBackground
+          @attr name com.stock:selectableItemBackground
         */
         public static final int SherlockTheme_selectableItemBackground = 14;
         /**
@@ -1105,7 +1109,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:windowActionBar
+          @attr name com.stock:windowActionBar
         */
         public static final int SherlockTheme_windowActionBar = 20;
         /**
@@ -1119,7 +1123,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:windowActionBarOverlay
+          @attr name com.stock:windowActionBarOverlay
         */
         public static final int SherlockTheme_windowActionBarOverlay = 21;
         /**
@@ -1133,7 +1137,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:windowActionModeOverlay
+          @attr name com.stock:windowActionModeOverlay
         */
         public static final int SherlockTheme_windowActionModeOverlay = 22;
         /**
@@ -1147,7 +1151,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:windowNoTitle
+          @attr name com.stock:windowNoTitle
         */
         public static final int SherlockTheme_windowNoTitle = 19;
     };

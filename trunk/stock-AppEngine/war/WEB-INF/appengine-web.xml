@@ -14,20 +14,29 @@
     limitations under the License.
 -->
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-    <application>stocktestt</application>
+    <application>stocktesttt</application>
     <version>1</version>
 
-    <!--
-        By default, App Engine sends requests serially to a given web server.
-        To allow App Engine to send multiple requests in parallel specify:
+  <!--
+    Allows App Engine to send multiple requests to one instance in parallel:
+  -->
+  <threadsafe>true</threadsafe>
 
-            <threadsafe>true</threadsafe>
-    -->
+  <!-- Configure serving/caching of GWT files -->
+  <static-files>
+    <include path="**" />
 
-    <!-- Configure java.util.logging -->
-    <system-properties>
-        <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
-    </system-properties>
+    <!-- The following line requires App Engine 1.3.2 SDK -->
+    <include path="**.nocache.*" expiration="0s" />
+
+    <include path="**.cache.*" expiration="365d" />
+    <exclude path="**.gwt.rpc" />
+  </static-files>
+
+  <!-- Configure java.util.logging -->
+  <system-properties>
+    <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+  </system-properties>
 
   <!--
     HTTP Sessions are disabled by default. To enable HTTP sessions specify:

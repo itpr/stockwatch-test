@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package android.support.v4.app;
 
@@ -139,13 +125,7 @@ final class FragmentState implements Parcelable {
     };
 }
 
-/**
- * Static library support version of the framework's {@link android.app.Fragment}.
- * Used to write apps that run on platforms prior to Android 3.0.  When running
- * on Android 3.0 or above, this implementation is still used; it does not try
- * to switch to the framework's implementation.  See the framework SDK
- * documentation for a class overview.
- */
+
 public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener {
     private static final HashMap<String, Class<?>> sClassMap =
             new HashMap<String, Class<?>>();
@@ -278,11 +258,7 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
     boolean mLoadersStarted;
     boolean mCheckedForLoaderManager;
 
-    /**
-     * State information that has been retrieved from a fragment instance
-     * through {@link FragmentManager#saveFragmentInstanceState(Fragment)
-     * FragmentManager.saveFragmentInstanceState}.
-     */
+    
     public static class SavedState implements Parcelable {
         final Bundle mState;
 
@@ -319,10 +295,7 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         };
     }
 
-    /**
-     * Thrown by {@link Fragment#instantiate(Context, String, Bundle)} when
-     * there is an instantiation failure.
-     */
+    
     static public class InstantiationException extends RuntimeException {
         private static final long serialVersionUID = 8423238441973733190L;
 
@@ -331,48 +304,16 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         }
     }
 
-    /**
-     * Default constructor.  <strong>Every</strong> fragment must have an
-     * empty constructor, so it can be instantiated when restoring its
-     * activity's state.  It is strongly recommended that subclasses do not
-     * have other constructors with parameters, since these constructors
-     * will not be called when the fragment is re-instantiated; instead,
-     * arguments can be supplied by the caller with {@link #setArguments}
-     * and later retrieved by the Fragment with {@link #getArguments}.
-     *
-     * <p>Applications should generally not implement a constructor.  The
-     * first place application code an run where the fragment is ready to
-     * be used is in {@link #onAttach(Activity)}, the point where the fragment
-     * is actually associated with its activity.  Some applications may also
-     * want to implement {@link #onInflate} to retrieve attributes from a
-     * layout resource, though should take care here because this happens for
-     * the fragment is attached to its activity.
-     */
+    
     public Fragment() {
     }
 
-    /**
-     * Like {@link #instantiate(Context, String, Bundle)} but with a null
-     * argument Bundle.
-     */
+    
     public static Fragment instantiate(Context context, String fname) {
         return instantiate(context, fname, null);
     }
 
-    /**
-     * Create a new instance of a Fragment with the given class name.  This is
-     * the same as calling its empty constructor.
-     *
-     * @param context The calling context being used to instantiate the fragment.
-     * This is currently just used to get its ClassLoader.
-     * @param fname The class name of the fragment to instantiate.
-     * @param args Bundle of arguments to supply to the fragment, which it
-     * can retrieve with {@link #getArguments()}.  May be null.
-     * @return Returns a new fragment instance.
-     * @throws InstantiationException If there is a failure in instantiating
-     * the given fragment class.  This is a runtime exception; it is not
-     * normally expected to happen.
-     */
+    
     public static Fragment instantiate(Context context, String fname, Bundle args) {
         try {
             Class<?> clazz = sClassMap.get(fname);
@@ -418,16 +359,12 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         return mBackStackNesting > 0;
     }
 
-    /**
-     * Subclasses can not override equals().
-     */
+    
     @Override final public boolean equals(Object o) {
         return super.equals(o);
     }
 
-    /**
-     * Subclasses can not override hashCode().
-     */
+    
     @Override final public int hashCode() {
         return super.hashCode();
     }
@@ -452,29 +389,17 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         return sb.toString();
     }
 
-    /**
-     * Return the identifier this fragment is known by.  This is either
-     * the android:id value supplied in a layout or the container view ID
-     * supplied when adding the fragment.
-     */
+    
     final public int getId() {
         return mFragmentId;
     }
 
-    /**
-     * Get the tag name of the fragment, if specified.
-     */
+    
     final public String getTag() {
         return mTag;
     }
 
-    /**
-     * Supply the construction arguments for this fragment.  This can only
-     * be called before the fragment has been attached to its activity; that
-     * is, you should call it immediately after constructing the fragment.  The
-     * arguments supplied here will be retained across fragment destroy and
-     * creation.
-     */
+    
     public void setArguments(Bundle args) {
         if (mIndex >= 0) {
             throw new IllegalStateException("Fragment already active");
@@ -482,22 +407,12 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         mArguments = args;
     }
 
-    /**
-     * Return the arguments supplied when the fragment was instantiated,
-     * if any.
-     */
+    
     final public Bundle getArguments() {
         return mArguments;
     }
 
-    /**
-     * Set the initial saved state that this Fragment should restore itself
-     * from when first being constructed, as returned by
-     * {@link FragmentManager#saveFragmentInstanceState(Fragment)
-     * FragmentManager.saveFragmentInstanceState}.
-     *
-     * @param state The state the fragment should be restored from.
-     */
+    
     public void setInitialSavedState(SavedState state) {
         if (mIndex >= 0) {
             throw new IllegalStateException("Fragment already active");
@@ -506,58 +421,33 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
                 ? state.mState : null;
     }
 
-    /**
-     * Optional target for this fragment.  This may be used, for example,
-     * if this fragment is being started by another, and when done wants to
-     * give a result back to the first.  The target set here is retained
-     * across instances via {@link FragmentManager#putFragment
-     * FragmentManager.putFragment()}.
-     *
-     * @param fragment The fragment that is the target of this one.
-     * @param requestCode Optional request code, for convenience if you
-     * are going to call back with {@link #onActivityResult(int, int, Intent)}.
-     */
+    
     public void setTargetFragment(Fragment fragment, int requestCode) {
         mTarget = fragment;
         mTargetRequestCode = requestCode;
     }
 
-    /**
-     * Return the target fragment set by {@link #setTargetFragment}.
-     */
+    
     final public Fragment getTargetFragment() {
         return mTarget;
     }
 
-    /**
-     * Return the target request code set by {@link #setTargetFragment}.
-     */
+    
     final public int getTargetRequestCode() {
         return mTargetRequestCode;
     }
 
-    /**
-     * Return the Activity this fragment is currently associated with.
-     *
-     * @see #getSupportActivity()
-     */
+    
     final public Activity getActivity() {
         return (mActivity != null) ? mActivity.asActivity() : null;
     }
 
-    /**
-     * Return the SupportActivity interface for the activity in which this
-     * fragment is currently associated.
-     *
-     * @see #getActivity()
-     */
+    
     final public SupportActivity getSupportActivity() {
         return mActivity;
     }
 
-    /**
-     * Return <code>getActivity().getResources()</code>.
-     */
+    
     final public Resources getResources() {
         if (mActivity == null) {
             throw new IllegalStateException("Fragment " + this + " not attached to Activity");
@@ -565,147 +455,73 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         return mActivity.getResources();
     }
 
-    /**
-     * Return a localized, styled CharSequence from the application's package's
-     * default string table.
-     *
-     * @param resId Resource id for the CharSequence text
-     */
+    
     public final CharSequence getText(int resId) {
         return getResources().getText(resId);
     }
 
-    /**
-     * Return a localized string from the application's package's
-     * default string table.
-     *
-     * @param resId Resource id for the string
-     */
+    
     public final String getString(int resId) {
         return getResources().getString(resId);
     }
 
-    /**
-     * Return a localized formatted string from the application's package's
-     * default string table, substituting the format arguments as defined in
-     * {@link java.util.Formatter} and {@link java.lang.String#format}.
-     *
-     * @param resId Resource id for the format string
-     * @param formatArgs The format arguments that will be used for substitution.
-     */
+    
 
     public final String getString(int resId, Object... formatArgs) {
         return getResources().getString(resId, formatArgs);
     }
 
-    /**
-     * Return the FragmentManager for interacting with fragments associated
-     * with this fragment's activity.  Note that this will be non-null slightly
-     * before {@link #getActivity()}, during the time from when the fragment is
-     * placed in a {@link FragmentTransaction} until it is committed and
-     * attached to its activity.
-     */
+    
     final public FragmentManager getFragmentManager() {
         return mFragmentManager;
     }
 
-    /**
-     * A clone of {@link #getFragmentManager()} to maintain naming conventions
-     * throughout the compatibility library.
-     */
+    
     final public FragmentManager getSupportFragmentManager() {
         return mFragmentManager;
     }
 
-    /**
-     * Return true if the fragment is currently added to its activity.
-     */
+    
     final public boolean isAdded() {
         return mActivity != null && mAdded;
     }
 
-    /**
-     * Return true if the fragment has been explicitly detached from the UI.
-     * That is, {@link FragmentTransaction#detach(Fragment)
-     * FragmentTransaction.detach(Fragment)} has been used on it.
-     */
+    
     final public boolean isDetached() {
         return mDetached;
     }
 
-    /**
-     * Return true if this fragment is currently being removed from its
-     * activity.  This is  <em>not</em> whether its activity is finishing, but
-     * rather whether it is in the process of being removed from its activity.
-     */
+    
     final public boolean isRemoving() {
         return mRemoving;
     }
 
-    /**
-     * Return true if the layout is included as part of an activity view
-     * hierarchy via the &lt;fragment&gt; tag.  This will always be true when
-     * fragments are created through the &lt;fragment&gt; tag, <em>except</em>
-     * in the case where an old fragment is restored from a previous state and
-     * it does not appear in the layout of the current state.
-     */
+    
     final public boolean isInLayout() {
         return mInLayout;
     }
 
-    /**
-     * Return true if the fragment is in the resumed state.  This is true
-     * for the duration of {@link #onResume()} and {@link #onPause()} as well.
-     */
+    
     final public boolean isResumed() {
         return mResumed;
     }
 
-    /**
-     * Return true if the fragment is currently visible to the user.  This means
-     * it: (1) has been added, (2) has its view attached to the window, and
-     * (3) is not hidden.
-     */
+    
     final public boolean isVisible() {
         return isAdded() && !isHidden() && mView != null
                 && mView.getWindowToken() != null && mView.getVisibility() == View.VISIBLE;
     }
 
-    /**
-     * Return true if the fragment has been hidden.  By default fragments
-     * are shown.  You can find out about changes to this state with
-     * {@link #onHiddenChanged}.  Note that the hidden state is orthogonal
-     * to other states -- that is, to be visible to the user, a fragment
-     * must be both started and not hidden.
-     */
+    
     final public boolean isHidden() {
         return mHidden;
     }
 
-    /**
-     * Called when the hidden state (as returned by {@link #isHidden()} of
-     * the fragment has changed.  Fragments start out not hidden; this will
-     * be called whenever the fragment changes state from that.
-     * @param hidden True if the fragment is now hidden, false if it is not
-     * visible.
-     */
+    
     public void onHiddenChanged(boolean hidden) {
     }
 
-    /**
-     * Control whether a fragment instance is retained across Activity
-     * re-creation (such as from a configuration change).  This can only
-     * be used with fragments not in the back stack.  If set, the fragment
-     * lifecycle will be slightly different when an activity is recreated:
-     * <ul>
-     * <li> {@link #onDestroy()} will not be called (but {@link #onDetach()} still
-     * will be, because the fragment is being detached from its current activity).
-     * <li> {@link #onCreate(Bundle)} will not be called since the fragment
-     * is not being re-created.
-     * <li> {@link #onAttach(Activity)} and {@link #onActivityCreated(Bundle)} <b>will</b>
-     * still be called.
-     * </ul>
-     */
+    
     public void setRetainInstance(boolean retain) {
         mRetainInstance = retain;
     }
@@ -714,13 +530,7 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         return mRetainInstance;
     }
 
-    /**
-     * Report that this fragment would like to participate in populating
-     * the options menu by receiving a call to {@link #onCreateOptionsMenu}
-     * and related methods.
-     *
-     * @param hasMenu If true, the fragment has menu items to contribute.
-     */
+    
     public void setHasOptionsMenu(boolean hasMenu) {
         if (mHasMenu != hasMenu) {
             mHasMenu = hasMenu;
@@ -730,15 +540,7 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         }
     }
 
-    /**
-     * Set a hint for whether this fragment's menu should be visible.  This
-     * is useful if you know that a fragment has been placed in your view
-     * hierarchy so that the user can not currently seen it, so any menu items
-     * it has should also not be shown.
-     *
-     * @param menuVisible The default is true, meaning the fragment's menu will
-     * be shown as usual.  If false, the user will not see the menu.
-     */
+    
     public void setMenuVisibility(boolean menuVisible) {
         if (mMenuVisible != menuVisible) {
             mMenuVisible = menuVisible;
@@ -748,19 +550,7 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         }
     }
 
-    /**
-     * Set a hint to the system about whether this fragment's UI is currently visible
-     * to the user. This hint defaults to true and is persistent across fragment instance
-     * state save and restore.
-     *
-     * <p>An app may set this to false to indicate that the fragment's UI is
-     * scrolled out of visibility or is otherwise not directly visible to the user.
-     * This may be used by the system to prioritize operations such as fragment lifecycle updates
-     * or loader ordering behavior.</p>
-     *
-     * @param isVisibleToUser true if this fragment's UI is currently visible to the user (default),
-     *                        false if it is not.
-     */
+    
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if (!mUserVisibleHint && isVisibleToUser && mState < STARTED) {
             mFragmentManager.performPendingDeferredStart(this);
@@ -769,17 +559,12 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         mDeferStart = !isVisibleToUser;
     }
 
-    /**
-     * @return The current value of the user-visible hint on this fragment.
-     * @see #setUserVisibleHint(boolean)
-     */
+    
     public boolean getUserVisibleHint() {
         return mUserVisibleHint;
     }
 
-    /**
-     * Return the LoaderManager for this fragment, creating it if needed.
-     */
+    
     public LoaderManager getLoaderManager() {
         if (mLoaderManager != null) {
             return mLoaderManager;
@@ -792,10 +577,7 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         return mLoaderManager;
     }
 
-    /**
-     * Call {@link Activity#startActivity(Intent)} on the fragment's
-     * containing Activity.
-     */
+    
     public void startActivity(Intent intent) {
         if (mActivity == null) {
             throw new IllegalStateException("Fragment " + this + " not attached to Activity");
@@ -803,10 +585,7 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         mActivity.startActivityFromFragment(this, intent, -1);
     }
 
-    /**
-     * Call {@link Activity#startActivityForResult(Intent, int)} on the fragment's
-     * containing Activity.
-     */
+    
     public void startActivityForResult(Intent intent, int requestCode) {
         if (mActivity == null) {
             throw new IllegalStateException("Fragment " + this + " not attached to Activity");
@@ -814,180 +593,56 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         mActivity.startActivityFromFragment(this, intent, requestCode);
     }
 
-    /**
-     * Receive the result from a previous call to
-     * {@link #startActivityForResult(Intent, int)}.  This follows the
-     * related Activity API as described there in
-     * {@link Activity#onActivityResult(int, int, Intent)}.
-     *
-     * @param requestCode The integer request code originally supplied to
-     *                    startActivityForResult(), allowing you to identify who this
-     *                    result came from.
-     * @param resultCode The integer result code returned by the child activity
-     *                   through its setResult().
-     * @param data An Intent, which can return result data to the caller
-     *               (various data can be attached to Intent "extras").
-     */
+    
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 
-    /**
-     * @hide Hack so that DialogFragment can make its Dialog before creating
-     * its views, and the view construction can use the dialog's context for
-     * inflation.  Maybe this should become a public API. Note sure.
-     */
+    
     public LayoutInflater getLayoutInflater(Bundle savedInstanceState) {
         return mActivity.getLayoutInflater();
     }
 
-    /**
-     * Called when a fragment is being created as part of a view layout
-     * inflation, typically from setting the content view of an activity.  This
-     * may be called immediately after the fragment is created from a <fragment>
-     * tag in a layout file.  Note this is <em>before</em> the fragment's
-     * {@link #onAttach(Activity)} has been called; all you should do here is
-     * parse the attributes and save them away.
-     *
-     * <p>This is called every time the fragment is inflated, even if it is
-     * being inflated into a new instance with saved state.  It typically makes
-     * sense to re-parse the parameters each time, to allow them to change with
-     * different configurations.</p>
-     *
-     * <p>Here is a typical implementation of a fragment that can take parameters
-     * both through attributes supplied here as well from {@link #getArguments()}:</p>
-     *
-     * {@sample development/samples/ApiDemos/src/com/example/android/apis/app/FragmentArguments.java
-     *      fragment}
-     *
-     * <p>Note that parsing the XML attributes uses a "styleable" resource.  The
-     * declaration for the styleable used here is:</p>
-     *
-     * {@sample development/samples/ApiDemos/res/values/attrs.xml fragment_arguments}
-     *
-     * <p>The fragment can then be declared within its activity's content layout
-     * through a tag like this:</p>
-     *
-     * {@sample development/samples/ApiDemos/res/layout/fragment_arguments.xml from_attributes}
-     *
-     * <p>This fragment can also be created dynamically from arguments given
-     * at runtime in the arguments Bundle; here is an example of doing so at
-     * creation of the containing activity:</p>
-     *
-     * {@sample development/samples/ApiDemos/src/com/example/android/apis/app/FragmentArguments.java
-     *      create}
-     *
-     * @param activity The Activity that is inflating this fragment.
-     * @param attrs The attributes at the tag where the fragment is
-     * being created.
-     * @param savedInstanceState If the fragment is being re-created from
-     * a previous saved state, this is the state.
-     */
+    
     public void onInflate(SupportActivity activity, AttributeSet attrs, Bundle savedInstanceState) {
         mCalled = true;
     }
 
-    /**
-     * Called when a fragment is first attached to its activity.
-     * {@link #onCreate(Bundle)} will be called after this.
-     */
+    
     public void onAttach(SupportActivity activity) {
         mCalled = true;
     }
 
-    /**
-     * Called when a fragment loads an animation.
-     */
+    
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         return null;
     }
 
-    /**
-     * Called to do initial creation of a fragment.  This is called after
-     * {@link #onAttach(Activity)} and before
-     * {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
-     *
-     * <p>Note that this can be called while the fragment's activity is
-     * still in the process of being created.  As such, you can not rely
-     * on things like the activity's content view hierarchy being initialized
-     * at this point.  If you want to do work once the activity itself is
-     * created, see {@link #onActivityCreated(Bundle)}.
-     *
-     * @param savedInstanceState If the fragment is being re-created from
-     * a previous saved state, this is the state.
-     */
+    
     public void onCreate(Bundle savedInstanceState) {
         mCalled = true;
     }
 
-    /**
-     * Called to have the fragment instantiate its user interface view.
-     * This is optional, and non-graphical fragments can return null (which
-     * is the default implementation).  This will be called between
-     * {@link #onCreate(Bundle)} and {@link #onActivityCreated(Bundle)}.
-     *
-     * <p>If you return a View from here, you will later be called in
-     * {@link #onDestroyView} when the view is being released.
-     *
-     * @param inflater The LayoutInflater object that can be used to inflate
-     * any views in the fragment,
-     * @param container If non-null, this is the parent view that the fragment's
-     * UI should be attached to.  The fragment should not add the view itself,
-     * but this can be used to generate the LayoutParams of the view.
-     * @param savedInstanceState If non-null, this fragment is being re-constructed
-     * from a previous saved state as given here.
-     *
-     * @return Return the View for the fragment's UI, or null.
-     */
+    
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         return null;
     }
 
-    /**
-     * Called immediately after {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}
-     * has returned, but before any saved state has been restored in to the view.
-     * This gives subclasses a chance to initialize themselves once
-     * they know their view hierarchy has been completely created.  The fragment's
-     * view hierarchy is not however attached to its parent at this point.
-     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
-     * @param savedInstanceState If non-null, this fragment is being re-constructed
-     * from a previous saved state as given here.
-     */
+    
     public void onViewCreated(View view, Bundle savedInstanceState) {
     }
 
-    /**
-     * Get the root view for the fragment's layout (the one returned by {@link #onCreateView}),
-     * if provided.
-     *
-     * @return The fragment's root view, or null if it has no layout.
-     */
+    
     public View getView() {
         return mView;
     }
 
-    /**
-     * Called when the fragment's activity has been created and this
-     * fragment's view hierarchy instantiated.  It can be used to do final
-     * initialization once these pieces are in place, such as retrieving
-     * views or restoring state.  It is also useful for fragments that use
-     * {@link #setRetainInstance(boolean)} to retain their instance,
-     * as this callback tells the fragment when it is fully associated with
-     * the new activity instance.  This is called after {@link #onCreateView}
-     * and before {@link #onStart()}.
-     *
-     * @param savedInstanceState If the fragment is being re-created from
-     * a previous saved state, this is the state.
-     */
+    
     public void onActivityCreated(Bundle savedInstanceState) {
         mCalled = true;
     }
 
-    /**
-     * Called when the Fragment is visible to the user.  This is generally
-     * tied to {@link Activity#onStart() Activity.onStart} of the containing
-     * Activity's lifecycle.
-     */
+    
     public void onStart() {
         mCalled = true;
 
@@ -1003,35 +658,12 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         }
     }
 
-    /**
-     * Called when the fragment is visible to the user and actively running.
-     * This is generally
-     * tied to {@link Activity#onResume() Activity.onResume} of the containing
-     * Activity's lifecycle.
-     */
+    
     public void onResume() {
         mCalled = true;
     }
 
-    /**
-     * Called to ask the fragment to save its current dynamic state, so it
-     * can later be reconstructed in a new instance of its process is
-     * restarted.  If a new instance of the fragment later needs to be
-     * created, the data you place in the Bundle here will be available
-     * in the Bundle given to {@link #onCreate(Bundle)},
-     * {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}, and
-     * {@link #onActivityCreated(Bundle)}.
-     *
-     * <p>This corresponds to {@link Activity#onSaveInstanceState(Bundle)
-     * Activity.onSaveInstanceState(Bundle)} and most of the discussion there
-     * applies here as well.  Note however: <em>this method may be called
-     * at any time before {@link #onDestroy()}</em>.  There are many situations
-     * where a fragment may be mostly torn down (such as when placed on the
-     * back stack with no UI showing), but its state will not be saved until
-     * its owning activity actually needs to save its state.
-     *
-     * @param outState Bundle in which to place your saved state.
-     */
+    
     public void onSaveInstanceState(Bundle outState) {
     }
 
@@ -1039,20 +671,12 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         mCalled = true;
     }
 
-    /**
-     * Called when the Fragment is no longer resumed.  This is generally
-     * tied to {@link Activity#onPause() Activity.onPause} of the containing
-     * Activity's lifecycle.
-     */
+    
     public void onPause() {
         mCalled = true;
     }
 
-    /**
-     * Called when the Fragment is no longer started.  This is generally
-     * tied to {@link Activity#onStop() Activity.onStop} of the containing
-     * Activity's lifecycle.
-     */
+    
     public void onStop() {
         mCalled = true;
     }
@@ -1061,23 +685,12 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         mCalled = true;
     }
 
-    /**
-     * Called when the view previously created by {@link #onCreateView} has
-     * been detached from the fragment.  The next time the fragment needs
-     * to be displayed, a new view will be created.  This is called
-     * after {@link #onStop()} and before {@link #onDestroy()}.  It is called
-     * <em>regardless</em> of whether {@link #onCreateView} returned a
-     * non-null view.  Internally it is called after the view's state has
-     * been saved but before it has been removed from its parent.
-     */
+    
     public void onDestroyView() {
         mCalled = true;
     }
 
-    /**
-     * Called when the fragment is no longer in use.  This is called
-     * after {@link #onStop()} and before {@link #onDetach()}.
-     */
+    
     public void onDestroy() {
         mCalled = true;
         //Log.v("foo", "onDestroy: mCheckedForLoaderManager=" + mCheckedForLoaderManager
@@ -1091,12 +704,7 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         }
     }
 
-    /**
-     * Called by the fragment manager once this fragment has been removed,
-     * so that we don't have any left-over state if the application decides
-     * to re-use the instance.  This only clears state that the framework
-     * internally manages, not things the application sets.
-     */
+    
     void initState() {
         mIndex = -1;
         mWho = null;
@@ -1120,165 +728,53 @@ public class Fragment implements ComponentCallbacks, OnCreateContextMenuListener
         mCheckedForLoaderManager = false;
     }
 
-    /**
-     * Called when the fragment is no longer attached to its activity.  This
-     * is called after {@link #onDestroy()}.
-     */
+    
     public void onDetach() {
         mCalled = true;
     }
 
-    /**
-     * Initialize the contents of the Activity's standard options menu.  You
-     * should place your menu items in to <var>menu</var>.  For this method
-     * to be called, you must have first called {@link #setHasOptionsMenu}.  See
-     * {@link Activity#onCreateOptionsMenu(Menu) Activity.onCreateOptionsMenu}
-     * for more information.
-     *
-     * @param menu The options menu in which you place your items.
-     *
-     * @see #setHasOptionsMenu
-     * @see #onPrepareOptionsMenu
-     * @see #onOptionsItemSelected
-     */
+    
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     }
 
-    /**
-     * Prepare the Screen's standard options menu to be displayed.  This is
-     * called right before the menu is shown, every time it is shown.  You can
-     * use this method to efficiently enable/disable items or otherwise
-     * dynamically modify the contents.  See
-     * {@link Activity#onPrepareOptionsMenu(Menu) Activity.onPrepareOptionsMenu}
-     * for more information.
-     *
-     * @param menu The options menu as last shown or first initialized by
-     *             onCreateOptionsMenu().
-     *
-     * @see #setHasOptionsMenu
-     * @see #onCreateOptionsMenu
-     */
+    
     public void onPrepareOptionsMenu(Menu menu) {
     }
 
-    /**
-     * Called when this fragment's option menu items are no longer being
-     * included in the overall options menu.  Receiving this call means that
-     * the menu needed to be rebuilt, but this fragment's items were not
-     * included in the newly built menu (its {@link #onCreateOptionsMenu(Menu, MenuInflater)}
-     * was not called).
-     */
+    
     public void onDestroyOptionsMenu() {
     }
 
-    /**
-     * This hook is called whenever an item in your options menu is selected.
-     * The default implementation simply returns false to have the normal
-     * processing happen (calling the item's Runnable or sending a message to
-     * its Handler as appropriate).  You can use this method for any items
-     * for which you would like to do processing without those other
-     * facilities.
-     *
-     * <p>Derived classes should call through to the base class for it to
-     * perform the default menu handling.
-     *
-     * @param item The menu item that was selected.
-     *
-     * @return boolean Return false to allow normal menu processing to
-     *         proceed, true to consume it here.
-     *
-     * @see #onCreateOptionsMenu
-     */
+    
     public boolean onOptionsItemSelected(MenuItem item) {
         return false;
     }
 
-    /**
-     * This hook is called whenever the options menu is being closed (either by the user canceling
-     * the menu with the back/menu button, or when an item is selected).
-     *
-     * @param menu The options menu as last shown or first initialized by
-     *             onCreateOptionsMenu().
-     */
+    
     public void onOptionsMenuClosed(Menu menu) {
     }
 
-    /**
-     * Called when a context menu for the {@code view} is about to be shown.
-     * Unlike {@link #onCreateOptionsMenu}, this will be called every
-     * time the context menu is about to be shown and should be populated for
-     * the view (or item inside the view for {@link AdapterView} subclasses,
-     * this can be found in the {@code menuInfo})).
-     * <p>
-     * Use {@link #onContextItemSelected(android.view.MenuItem)} to know when an
-     * item has been selected.
-     * <p>
-     * The default implementation calls up to
-     * {@link Activity#onCreateContextMenu Activity.onCreateContextMenu}, though
-     * you can not call this implementation if you don't want that behavior.
-     * <p>
-     * It is not safe to hold onto the context menu after this method returns.
-     * {@inheritDoc}
-     */
+    
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         getActivity().onCreateContextMenu(menu, v, menuInfo);
     }
 
-    /**
-     * Registers a context menu to be shown for the given view (multiple views
-     * can show the context menu). This method will set the
-     * {@link OnCreateContextMenuListener} on the view to this fragment, so
-     * {@link #onCreateContextMenu(ContextMenu, View, ContextMenuInfo)} will be
-     * called when it is time to show the context menu.
-     *
-     * @see #unregisterForContextMenu(View)
-     * @param view The view that should show a context menu.
-     */
+    
     public void registerForContextMenu(View view) {
         view.setOnCreateContextMenuListener(this);
     }
 
-    /**
-     * Prevents a context menu to be shown for the given view. This method will
-     * remove the {@link OnCreateContextMenuListener} on the view.
-     *
-     * @see #registerForContextMenu(View)
-     * @param view The view that should stop showing a context menu.
-     */
+    
     public void unregisterForContextMenu(View view) {
         view.setOnCreateContextMenuListener(null);
     }
 
-    /**
-     * This hook is called whenever an item in a context menu is selected. The
-     * default implementation simply returns false to have the normal processing
-     * happen (calling the item's Runnable or sending a message to its Handler
-     * as appropriate). You can use this method for any items for which you
-     * would like to do processing without those other facilities.
-     * <p>
-     * Use {@link MenuItem#getMenuInfo()} to get extra information set by the
-     * View that added this menu item.
-     * <p>
-     * Derived classes should call through to the base class for it to perform
-     * the default menu handling.
-     *
-     * @param item The context menu item that was selected.
-     * @return boolean Return false to allow normal context menu processing to
-     *         proceed, true to consume it here.
-     */
+    
     public boolean onContextItemSelected(MenuItem item) {
         return false;
     }
 
-    /**
-     * Print the Fragments's state into the given stream.
-     *
-     * @param prefix Text to print at the front of each line.
-     * @param fd The raw file descriptor that the dump is being sent to.
-     * @param writer The PrintWriter to which you should dump your state.  This will be
-     * closed for you after you return.
-     * @param args additional arguments to the dump request.
-     */
+    
     public void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
         writer.print(prefix); writer.print("mFragmentId=#");
                 writer.print(Integer.toHexString(mFragmentId));

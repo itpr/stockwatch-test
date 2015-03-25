@@ -30,10 +30,10 @@ import com.actionbarsherlock.internal.view.menu.MenuBuilder;
 import com.actionbarsherlock.internal.view.menu.MenuPresenter;
 
 public final class ActionBarView extends RelativeLayout {
-    /** Default display options if none are defined in the theme. */
+    
     private static final int DEFAULT_DISPLAY_OPTIONS = ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME;
 
-    /** Default navigation mode if one is not defined in the theme. */
+    
     private static final int DEFAULT_NAVIGATION_MODE = ActionBar.NAVIGATION_MODE_STANDARD;
 
 
@@ -50,17 +50,17 @@ public final class ActionBarView extends RelativeLayout {
     private final CharSequence mSubtitle;
     private final TextView mSubtitleLayout;
 
-    /** Indeterminate progress bar. */
+    
     private final ProgressBar mIndeterminateProgress;
     private boolean mAllowsIndeterminateProgress = false;
 
-    /** List view. */
+    
     private final Spinner mSpinner;
     private SpinnerAdapter mSpinnerAdapter;
     private final AdapterView.OnItemSelectedListener mNavItemSelectedListener;
     private ActionBar.OnNavigationListener mCallback;
 
-    /** Custom view parent. */
+    
     private final FrameLayout mCustomView;
     private View mCustomNavView;
 
@@ -68,34 +68,20 @@ public final class ActionBarView extends RelativeLayout {
     private Drawable mLogo;
     private Drawable mIcon;
 
-    /** Container for action item view. */
+    
     private final FrameLayout mActionsView;
     private MenuBuilder mOptionsMenu;
     private ActionMenuView mMenuView;
     private ActionMenuPresenter mActionMenuPresenter;
 
-    /** Container for all tab items. */
+    
     private final LinearLayout mTabsView;
     private final ViewGroup mTabViewContainer;
 
-    /**
-     * Display state flags.
-     *
-     * @see #getDisplayOptions()
-     * @see #getDisplayOptionValue(int)
-     * @see #setDisplayOptions(int)
-     * @see #setDisplayOptions(int, int)
-     * @see #setDisplayOption(int, boolean)
-     * @see #reloadDisplay()
-     */
+    
     private int mDisplayOptions;
 
-    /**
-     * Current navigation mode
-     *
-     * @see #getNavigationMode()
-     * @see #setNavigationMode(int)
-     */
+    
     private int mNavigationMode = -1;
 
     private boolean mIsConstructing;
@@ -179,13 +165,7 @@ public final class ActionBarView extends RelativeLayout {
 
         //Try to load the logo from the theme
         mLogo = a.getDrawable(R.styleable.SherlockTheme_abLogo);
-        /*
-        if ((mLogo == null) && (context instanceof Activity)) {
-            //LOGO LOADING DOES NOT WORK
-            //SEE: http://stackoverflow.com/questions/6105504/load-activity-and-or-application-logo-programmatically-from-manifest
-            //SEE: https://groups.google.com/forum/#!topic/android-developers/UFR4l0ZwJWc
-        }
-        */
+        
 
         //Try to load the icon from the theme
         mIcon = a.getDrawable(R.styleable.SherlockTheme_abIcon);
@@ -260,19 +240,12 @@ public final class ActionBarView extends RelativeLayout {
     // HELPER METHODS
     // ------------------------------------------------------------------------
 
-    /**
-     * Helper to get a boolean value for a specific flag.
-     *
-     * @param flag Target flag.
-     * @return Value.
-     */
+    
     private boolean getDisplayOptionValue(int flag) {
         return (mDisplayOptions & flag) == flag;
     }
 
-    /**
-     * Reload the current action bar display state.
-     */
+    
     private void reloadDisplay() {
         if (mIsConstructing) {
             return; //Do not run if we are in the constructor
@@ -591,9 +564,7 @@ public final class ActionBarView extends RelativeLayout {
             mCustomView = (FrameLayout)mView.findViewById(R.id.abs__tab_custom);
         }
 
-        /**
-         * Update display to reflect current property state.
-         */
+        
         void reloadDisplay() {
             boolean hasCustom = mCustomView.getChildCount() > 0;
             mIconView.setVisibility(hasCustom ? View.GONE : View.VISIBLE);
@@ -711,10 +682,7 @@ public final class ActionBarView extends RelativeLayout {
             }
         }
 
-        /**
-         * Unselect this tab. Only valid if the tab has been added to the
-         * action bar and was previously selected.
-         */
+        
         void unselect() {
             if (mView.isSelected()) {
                 mView.setSelected(false);

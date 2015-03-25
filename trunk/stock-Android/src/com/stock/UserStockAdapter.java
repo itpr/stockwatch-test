@@ -12,6 +12,9 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.stock.R;
+import com.stock.R.id;
+import com.stock.R.layout;
 import com.stock.shared.StockProxy;
 
 public class UserStockAdapter extends BaseAdapter {

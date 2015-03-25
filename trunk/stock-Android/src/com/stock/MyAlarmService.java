@@ -1,11 +1,10 @@
 package com.stock;
 
-import com.stock.StockApplication.StockListener;
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.widget.Toast;
+
+import com.stock.StockApplication.StockListener;
 
 public class MyAlarmService extends Service {
 

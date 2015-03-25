@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2006 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package com.actionbarsherlock.internal.view.menu;
 
@@ -29,9 +15,7 @@ import android.view.View;
 import android.view.ViewDebug;
 import android.widget.LinearLayout;
 
-/**
- * @hide
- */
+
 public final class MenuItemImpl implements MenuItem {
     private static final String TAG = "MenuItemImpl";
 
@@ -49,18 +33,14 @@ public final class MenuItemImpl implements MenuItem {
     private char mShortcutNumericChar;
     private char mShortcutAlphabeticChar;
 
-    /** The icon's drawable which is only created as needed */
+    
     private Drawable mIconDrawable;
-    /**
-     * The icon's resource ID which is used to get the Drawable when it is
-     * needed (if the Drawable isn't already obtained--only one of the two is
-     * needed).
-     */
+    
     private int mIconResId = NO_ICON;
 
-    /** The menu to which this item belongs */
+    
     private MenuBuilder mMenu;
-    /** If this item should launch a sub menu, this is the sub menu to launch */
+    
     private SubMenuBuilder mSubMenu;
 
     private Runnable mItemCallback;
@@ -78,13 +58,10 @@ public final class MenuItemImpl implements MenuItem {
 
     private View mActionView;
 
-    /** Used for the icon resource ID if this item does not have an icon */
+    
     static final int NO_ICON = 0;
 
-    /**
-     * Current use case is for context menu: Extra information linked to the
-     * View that added this item to the context menu.
-     */
+    
     private ContextMenuInfo mMenuInfo;
 
     private static String sPrependShortcutLabel;
@@ -93,32 +70,11 @@ public final class MenuItemImpl implements MenuItem {
     private static String sSpaceShortcutLabel;
 
 
-    /**
-     * Instantiates this menu item.
-     *
-     * @param menu
-     * @param group Item ordering grouping control. The item will be added after
-     *            all other items whose order is <= this number, and before any
-     *            that are larger than it. This can also be used to define
-     *            groups of items for batch state changes. Normally use 0.
-     * @param id Unique item ID. Use 0 if you do not need a unique ID.
-     * @param categoryOrder The ordering for this item.
-     * @param title The text to display for the item.
-     */
+    
     MenuItemImpl(MenuBuilder menu, int group, int id, int categoryOrder, int ordering,
             CharSequence title, int showAsAction) {
 
-        /* TODO if (sPrependShortcutLabel == null) {
-            // This is instantiated from the UI thread, so no chance of sync issues
-            sPrependShortcutLabel = menu.getContext().getResources().getString(
-                    com.android.internal.R.string.prepend_shortcut_label);
-            sEnterShortcutLabel = menu.getContext().getResources().getString(
-                    com.android.internal.R.string.menu_enter_shortcut_label);
-            sDeleteShortcutLabel = menu.getContext().getResources().getString(
-                    com.android.internal.R.string.menu_delete_shortcut_label);
-            sSpaceShortcutLabel = menu.getContext().getResources().getString(
-                    com.android.internal.R.string.menu_space_shortcut_label);
-        }*/
+        
 
         mMenu = menu;
         mId = id;
@@ -129,11 +85,7 @@ public final class MenuItemImpl implements MenuItem {
         mShowAsAction = showAsAction;
     }
 
-    /**
-     * Invokes the item by calling various listeners or callbacks.
-     *
-     * @return true if the invocation was handled, false otherwise
-     */
+    
     public boolean invoke() {
         if (mClickListener != null &&
             mClickListener.onMenuItemClick(this)) {
@@ -249,18 +201,12 @@ public final class MenuItemImpl implements MenuItem {
         return this;
     }
 
-    /**
-     * @return The active shortcut (based on QWERTY-mode of the menu).
-     */
+    
     char getShortcut() {
         return (mMenu.isQwertyMode() ? mShortcutAlphabeticChar : mShortcutNumericChar);
     }
 
-    /**
-     * @return The label to show for the shortcut. This includes the chording
-     *         key (for example 'Menu+a'). Also, any non-human readable
-     *         characters should be human readable (for example 'Menu+enter').
-     */
+    
     String getShortcutLabel() {
 
         char shortcut = getShortcut();
@@ -291,11 +237,7 @@ public final class MenuItemImpl implements MenuItem {
         return sb.toString();
     }
 
-    /**
-     * @return Whether this menu item should be showing shortcuts (depends on
-     *         whether the menu should show shortcuts and whether this item has
-     *         a shortcut defined)
-     */
+    
     boolean shouldShowShortcut() {
         // Show shortcuts if the menu is supposed to show shortcuts AND this item has a shortcut
         return mMenu.isShortcutsVisible() && (getShortcut() != 0);
@@ -320,13 +262,7 @@ public final class MenuItemImpl implements MenuItem {
         return mTitle;
     }
 
-    /**
-     * Gets the title for a particular {@link ItemView}
-     *
-     * @param itemView The ItemView that is receiving the title
-     * @return Either the title or condensed title based on what the ItemView
-     *         prefers
-     */
+    
     CharSequence getTitleForItemView(MenuView.ItemView itemView) {
         return ((itemView != null) && itemView.prefersCondensedTitle())
                 ? getTitleCondensed()
@@ -446,15 +382,7 @@ public final class MenuItemImpl implements MenuItem {
         return (mFlags & HIDDEN) == 0;
     }
 
-    /**
-     * Changes the visibility of the item. This method DOES NOT notify the
-     * parent menu of a change in this item, so this should only be called from
-     * methods that will eventually trigger this change.  If unsure, use {@link #setVisible(boolean)}
-     * instead.
-     *
-     * @param shown Whether to show (true) or hide (false).
-     * @return Whether the item's shown state was changed
-     */
+    
     boolean setVisibleInt(boolean shown) {
         final int oldFlags = mFlags;
         mFlags = (mFlags & ~HIDDEN) | (shown ? 0 : HIDDEN);
@@ -502,9 +430,7 @@ public final class MenuItemImpl implements MenuItem {
         mMenu.onItemActionRequestChanged(this);
     }
 
-    /**
-     * @return Whether the menu should show icons for menu items.
-     */
+    
     public boolean shouldShowIcon() {
         return mMenu.getOptionalIconsVisible();
     }

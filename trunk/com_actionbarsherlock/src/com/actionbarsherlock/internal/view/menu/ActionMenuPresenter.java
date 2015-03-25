@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package com.actionbarsherlock.internal.view.menu;
 
@@ -34,9 +20,7 @@ import android.view.ViewGroup;
 
 import com.actionbarsherlock.R;
 
-/**
- * MenuPresenter for building action menus as seen in the action bar and action modes.
- */
+
 public class ActionMenuPresenter extends BaseMenuPresenter {
     //UNUSED private static final String TAG = "ActionMenuPresenter";
 
@@ -245,19 +229,12 @@ public class ActionMenuPresenter extends BaseMenuPresenter {
         return null;
     }
 
-    /**
-     * Dismiss all popup menus - overflow and submenus.
-     * @return true if popups were dismissed, false otherwise. (This can be because none were open.)
-     */
+    
     public boolean dismissPopupMenus() {
         return hideSubMenus();
     }
 
-    /**
-     * Dismiss all submenu popups.
-     *
-     * @return true if popups were dismissed, false otherwise. (This can be because none were open.)
-     */
+    
     public boolean hideSubMenus() {
         if (mDialog != null) {
             try {
@@ -286,9 +263,7 @@ public class ActionMenuPresenter extends BaseMenuPresenter {
             MenuItemImpl item = visibleItems.get(i);
             if (item.requiresActionButton()) {
                 requiredItems++;
-            }/* else if (item.requestsActionButton()) {
-                requestedItems++;
-            }*/
+            }
         }
         maxActions -= requiredItems;
 

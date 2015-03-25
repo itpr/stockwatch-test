@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.AlarmManager;
-import android.app.IntentService;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,7 +23,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.stock.StockApplication.StockListener;
 import com.stock.StockApplication.UserListListener;
@@ -34,16 +32,11 @@ public class MainActivity extends FragmentActivity implements OnItemClickListene
 
 	private static final String TAG = "MainActivity";
 
-	/**
-	 * The current context.
-	 */
+	
 	private Context mContext = this;
 	private ActionBar actionBar;
 
-	/**
-	 * A {@link BroadcastReceiver} to receive the response from a register or
-	 * unregister request, and to update the UI.
-	 */
+	
 	private final BroadcastReceiver mUpdateUIReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -78,9 +71,7 @@ public class MainActivity extends FragmentActivity implements OnItemClickListene
 
 
 
-	/**
-	 * Begins the activity.
-	 */
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		Log.i(TAG, "onCreate");
@@ -179,7 +170,7 @@ public class MainActivity extends FragmentActivity implements OnItemClickListene
 		    FragmentTransaction ft = fragMgr.beginTransaction();
 		    if(mFragment==null){
 		    	mFragment = new NavigationFragment();
-            	ft.add(R.id.main, mFragment);
+            	ft.add(R.id.main, mFragment, "navFrag");
 		    }else
 		    	ft.attach(mFragment);
 		    if(mFragment1==null){
@@ -225,7 +216,7 @@ public class MainActivity extends FragmentActivity implements OnItemClickListene
 		    FragmentTransaction ft = fragMgr.beginTransaction();
 		    if(mFragment==null){
 		    	mFragment = new AddUserListFragment();
-            	ft.add(R.id.main, mFragment);
+            	ft.add(R.id.main, mFragment, "navFrag");
 		    }else
 		    	ft.attach(mFragment);
 		    if(mFragment1==null){
@@ -267,9 +258,7 @@ public class MainActivity extends FragmentActivity implements OnItemClickListene
 
 	}
 
-	/**
-	 * Shuts down the activity.
-	 */
+	
 	@Override
 	public void onDestroy() {
 		unregisterReceiver(mUpdateUIReceiver);

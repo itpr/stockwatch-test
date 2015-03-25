@@ -7,28 +7,17 @@ import android.support.v4.view.MenuItem;
 import android.support.v4.view.SubMenu;
 import android.view.KeyEvent;
 
-/**
- * Wrapper around a native Menu instance which implements our version of the
- * Menu interface.
- */
+
 public class MenuWrapper implements Menu {
-    /** Native menu. */
+    
     private final android.view.Menu mMenu;
 
-    /**
-     * Create a new wrapped instance.
-     *
-     * @param menu Native menu.
-     */
+    
     public MenuWrapper(android.view.Menu menu) {
         this.mMenu = menu;
     }
 
-    /**
-     * Get the native menu instance we are wrapping.
-     *
-     * @return Native menu.
-     */
+    
     android.view.Menu unwrap() {
         return mMenu;
     }

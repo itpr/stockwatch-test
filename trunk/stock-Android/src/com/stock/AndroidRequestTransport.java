@@ -1,17 +1,4 @@
-/*******************************************************************************
- * Copyright 2011 Google Inc. All Rights Reserved.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.stock;
 
 import com.google.web.bindery.requestfactory.shared.RequestTransport;
@@ -30,22 +17,14 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 
-/**
- * An implementation of RequestTransport for use between an Android client and a
- * Google AppEngine server.
- */
+
 public class AndroidRequestTransport implements RequestTransport {
 
     private final URI uri;
 
     private final String cookie;
 
-    /**
-     * Constructs an AndroidRequestTransport instance.
-     * 
-     * @param uri the URI for the RequestFactory service
-     * @param cookie the ACSID or SACSID cookie used for authentication
-     */
+    
     public AndroidRequestTransport(URI uri, String cookie) {
         this.uri = uri;
         this.cookie = cookie;
@@ -81,9 +60,7 @@ public class AndroidRequestTransport implements RequestTransport {
         receiver.onTransportFailure(new ServerFailure(ex.getMessage()));
     }
 
-    /**
-     * Reads an entire input stream as a String. Closes the input stream.
-     */
+    
     private String readStreamAsString(InputStream in) {
         try {
             ByteArrayOutputStream out = new ByteArrayOutputStream(1024);

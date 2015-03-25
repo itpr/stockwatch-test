@@ -1,17 +1,4 @@
-/*******************************************************************************
- * Copyright 2011 Google Inc. All Rights Reserved.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.stock.server;
 
 import com.google.android.c2dm.server.PMF;
@@ -30,49 +17,26 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-/**
- * Registration info.
- *
- * An account may be associated with multiple phones,
- * and a phone may be associated with multiple accounts.
- *
- * registrations lists different phones registered to that account.
- */
+
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class DeviceInfo {
     private static final Logger log =
         Logger.getLogger(DeviceInfo.class.getName());
 
-    /**
-     * User-email # device-id
-     *
-     * Device-id can be specified by device, default is hash of abs(registration
-     * id).
-     *
-     * user@example.com#1234
-     */
+    
     @PrimaryKey
     @Persistent
     private Key key;
 
-    /**
-     * The ID used for sending messages to.
-     */
+    
     @Persistent
     private String deviceRegistrationID;
 
-    /**
-     * Current supported types:
-     *   (default) - ac2dm, regular froyo+ devices using C2DM protocol
-     *
-     * New types may be defined - for example for sending to chrome.
-     */
+    
     @Persistent
     private String type;
 
-    /**
-     * For statistics - and to provide hints to the user.
-     */
+    
     @Persistent
     private Date registrationTimestamp;
 
@@ -137,9 +101,7 @@ public class DeviceInfo {
         return registrationTimestamp;
     }
 
-    /**
-     * Helper function - will query all registrations for a user.
-     */
+    
     @SuppressWarnings("unchecked")
     public static List<DeviceInfo> getDeviceInfoForUser(String user) {
         PersistenceManager pm = PMF.get().getPersistenceManager();

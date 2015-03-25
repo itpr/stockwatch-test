@@ -1,22 +1,8 @@
-/*******************************************************************************
- * Copyright 2011 Google Inc. All Rights Reserved.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.stock;
 
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import com.google.web.bindery.requestfactory.shared.ServerFailure;
-
 import com.stock.client.MyRequestFactory;
 import com.stock.client.MyRequestFactory.HelloWorldRequest;
 
@@ -36,25 +22,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-/**
- * Main activity - requests "Hello, World" messages from the server and provides
- * a menu item to invoke the accounts activity.
- */
+
 public class StockActivity extends Activity {
-    /**
-     * Tag for logging.
-     */
+    
     private static final String TAG = "StockActivity";
 
-    /**
-     * The current context.
-     */
+    
     private Context mContext = this;
 
-    /**
-     * A {@link BroadcastReceiver} to receive the response from a register or
-     * unregister request, and to update the UI.
-     */
+    
     private final BroadcastReceiver mUpdateUIReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -81,9 +57,7 @@ public class StockActivity extends Activity {
         }
     };
 
-    /**
-     * Begins the activity.
-     */
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "onCreate");
@@ -105,9 +79,7 @@ public class StockActivity extends Activity {
         setScreenContent(R.layout.hello_world);
     }
 
-    /**
-     * Shuts down the activity.
-     */
+    
     @Override
     public void onDestroy() {
         unregisterReceiver(mUpdateUIReceiver);
@@ -170,9 +142,7 @@ public class StockActivity extends Activity {
         });
     }
 
-    /**
-     * Sets the screen content based on the screen id.
-     */
+    
     private void setScreenContent(int screenId) {
         setContentView(screenId);
         switch (screenId) {

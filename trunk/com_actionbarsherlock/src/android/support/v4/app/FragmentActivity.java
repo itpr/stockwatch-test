@@ -1,19 +1,4 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- * Copyright (C) 2011 Jake Wharton <jakewharton@gmail.com>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package android.support.v4.app;
 
@@ -53,34 +38,7 @@ import com.actionbarsherlock.internal.view.menu.MenuPresenter;
 import com.actionbarsherlock.internal.view.menu.MenuWrapper;
 import com.actionbarsherlock.internal.widget.ActionBarView;
 
-/**
- * Base class for activities that want to use the support-based
- * {@link android.support.v4.app.Fragment},
- * {@link android.support.v4.content.Loader}, and
- * {@link android.support.v4.app.ActionBar} APIs.
- *
- * <p>When using this class as opposed to new platform's built-in fragment
- * and loader support, you must use the {@link #getSupportFragmentManager()}
- * and {@link #getSupportLoaderManager()} methods respectively to access
- * those features.
- *
- * <p>Known limitations:</p>
- * <ul>
- * <li> <p>When using the &lt;fragment> tag, this implementation can not
- * use the parent view's ID as the new fragment's ID.  You must explicitly
- * specify an ID (or tag) in the &lt;fragment>.</p>
- * <li> <p>Prior to Honeycomb (3.0), an activity's state was saved before pausing.
- * Fragments are a significant amount of new state, and dynamic enough that one
- * often wants them to change between pausing and stopping.  These classes
- * throw an exception if you try to change the fragment state after it has been
- * saved, to avoid accidental loss of UI state.  However this is too restrictive
- * prior to Honeycomb, where the state is saved before pausing.  To address this,
- * when running on platforms prior to Honeycomb an exception will not be thrown
- * if you change fragments between the state save and the activity being stopped.
- * This means that in some cases if the activity is restored from its last saved
- * state, this may be a snapshot slightly before what the user last saw.</p>
- * </ul>
- */
+
 public class FragmentActivity extends Activity implements SupportActivity {
     private static final String TAG = "FragmentActivity";
     private static final boolean DEBUG = false;
@@ -170,9 +128,9 @@ public class FragmentActivity extends Activity implements SupportActivity {
         }
     };
 
-    /** Map between native options items and sherlock items (pre-3.0 only). */
+    
     private HashMap<android.view.MenuItem, MenuItemImpl> mNativeItemMap;
-    /** Native menu item callback which proxies to our callback. */
+    
     private final android.view.MenuItem.OnMenuItemClickListener mNativeItemListener = new android.view.MenuItem.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(android.view.MenuItem item) {
@@ -364,14 +322,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
     // HOOKS INTO ACTIVITY
     // ------------------------------------------------------------------------
 
-    /**
-     * Enable extended window features.
-     *
-     * @param featureId The desired feature as defined in
-     * {@link android.support.v4.view.Window}.
-     * @return Returns {@code true} if the requested feature is supported and
-     * now enabled.
-     */
+    
     @Override
     public boolean requestWindowFeature(long featureId) {
         if (!IS_HONEYCOMB) {
@@ -484,9 +435,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         }
     }
 
-    /**
-     * Dispatch incoming result to the correct fragment.
-     */
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         int index = requestCode>>16;
@@ -510,10 +459,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    /**
-     * Take care of popping the fragment back stack or finishing the activity
-     * as appropriate.
-     */
+    
     @Override
     public void onBackPressed() {
         if (!mFragments.popBackStackImmediate()) {
@@ -521,18 +467,14 @@ public class FragmentActivity extends Activity implements SupportActivity {
         }
     }
 
-    /**
-     * Dispatch configuration change to all fragments.
-     */
+    
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mFragments.dispatchConfigurationChanged(newConfig);
     }
 
-    /**
-     * Perform initialization of all fragments and loaders.
-     */
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mFragments.attachActivity(this);
@@ -555,28 +497,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         mFragments.dispatchCreate();
     }
 
-    /**
-     * <p>Initialize the contents of the Activity's standard options menu. You
-     * should place your menu items in to menu.</p>
-     *
-     * <p>The default implementation populates the menu with standard system
-     * menu items. These are placed in the {@link Menu.CATEGORY_SYSTEM} group
-     * so that they will be correctly ordered with application-defined menu
-     * items. Deriving classes should always call through to the base
-     * implementation.</p>
-     *
-     * <p>You can safely hold on to menu (and any items created from it),
-     * making modifications to it as desired, until the next time
-     * {@code onCreateOptionsMenu()} is called.</p>
-     *
-     * <p>When you add items to the menu, you can implement the Activity's
-     * {@link #onOptionsItemSelected(MenuItem)} method to handle them
-     * there.</p>
-     *
-     * @param menu The options menu in which you place your items.
-     * @return You must return true for the menu to be displayed; if you return
-     * false it will not be shown.
-     */
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (DEBUG) Log.d(TAG, "onCreateOptionsMenu(Menu): Returning true");
@@ -609,9 +530,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         return result;
     }
 
-    /**
-     * Add support for inflating the &lt;fragment> tag.
-     */
+    
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
         if (!"fragment".equals(name)) {
@@ -737,9 +656,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         }
     }
 
-    /**
-     * Destroy all fragments and loaders.
-     */
+    
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -752,12 +669,10 @@ public class FragmentActivity extends Activity implements SupportActivity {
         }
     }
 
-    /**
-     * Take care of calling onBackPressed() for pre-Eclair platforms.
-     */
+    
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (android.os.Build.VERSION.SDK_INT < 5 /* ECLAIR */
+        if (android.os.Build.VERSION.SDK_INT < 5 
                 && keyCode == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0) {
             // Take care of calling this method on earlier versions of
@@ -769,18 +684,14 @@ public class FragmentActivity extends Activity implements SupportActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    /**
-     * Dispatch onLowMemory() to all fragments.
-     */
+    
     @Override
     public void onLowMemory() {
         super.onLowMemory();
         mFragments.dispatchLowMemory();
     }
 
-    /**
-     * Dispatch context and options menu to fragments.
-     */
+    
     @Override
     public final boolean onMenuItemSelected(int featureId, android.view.MenuItem item) {
         if (super.onMenuItemSelected(featureId, item)) {
@@ -827,9 +738,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         return onOptionsItemSelected(new MenuItemWrapper(item));
     }
 
-    /**
-     * Call onOptionsMenuClosed() on fragments.
-     */
+    
     @Override
     public void onPanelClosed(int featureId, android.view.Menu menu) {
         switch (featureId) {
@@ -845,9 +754,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         super.onPanelClosed(featureId, menu);
     }
 
-    /**
-     * Dispatch onPause() to fragments.
-     */
+    
     @Override
     protected void onPause() {
         super.onPause();
@@ -859,9 +766,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         mFragments.dispatchPause();
     }
 
-    /**
-     * Dispatch onResume() to fragments.
-     */
+    
     @Override
     protected void onResume() {
         super.onResume();
@@ -870,9 +775,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         mFragments.execPendingActions();
     }
 
-    /**
-     * Dispatch onResume() to fragments.
-     */
+    
     @Override
     protected void onPostResume() {
         super.onPostResume();
@@ -923,20 +826,11 @@ public class FragmentActivity extends Activity implements SupportActivity {
         return result;
     }
 
-    /**
-     * Cause this Activity to be recreated with a new instance. This results in
-     * essentially the same flow as when the Activity is created due to a
-     * configuration change -- the current instance will go through its
-     * lifecycle to onDestroy() and a new instance then created after it.
-     */
+    
     @Override
     public void recreate() {
         //This SUCKS! Figure out a way to call the super method and support Android 1.6
-        /*
-        if (IS_HONEYCOMB) {
-            super.recreate();
-        } else {
-        */
+        
             final Intent intent = getIntent();
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
@@ -949,9 +843,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
                 OverridePendingTransition.invoke(this);
             }
-        /*
-        }
-        */
+        
     }
 
     private static final class OverridePendingTransition {
@@ -960,11 +852,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         }
     }
 
-    /**
-     * Retain all appropriate fragment and loader state.  You can NOT
-     * override this yourself!  Use {@link #onRetainCustomNonConfigurationInstance()}
-     * if you want to retain your own state.
-     */
+    
     @Override
     public final Object onRetainNonConfigurationInstance() {
         if (mStopped) {
@@ -1001,9 +889,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         return nci;
     }
 
-    /**
-     * Save all appropriate fragment state.
-     */
+    
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -1013,10 +899,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         }
     }
 
-    /**
-     * Dispatch onStart() to all fragments.  Ensure any created loaders are
-     * now started.
-     */
+    
     @Override
     protected void onStart() {
         super.onStart();
@@ -1054,9 +937,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         }
     }
 
-    /**
-     * Dispatch onStop() to all fragments.  Ensure all loaders are stopped.
-     */
+    
     @Override
     protected void onStop() {
         super.onStop();
@@ -1067,20 +948,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         mFragments.dispatchStop();
     }
 
-    /**
-     * <p>Sets the visibility of the indeterminate progress bar in the
-     * title.</p>
-     *
-     * <p>In order for the progress bar to be shown, the feature must be
-     * requested via {@link #requestWindowFeature(long)}.</p>
-     *
-     * <p><strong>This method must be used instead of
-     * {@link #setProgressBarIndeterminateVisibility(boolean)} for
-     * ActionBarSherlock.</strong> Pass {@link Boolean.TRUE} or
-     * {@link Boolean.FALSE} to ensure the appropriate one is called.</p>
-     *
-     * @param visible Whether to show the progress bars in the title.
-     */
+    
     @Override
     public void setProgressBarIndeterminateVisibility(Boolean visible) {
         if (IS_HONEYCOMB || (mActionBar == null)) {
@@ -1094,42 +962,25 @@ public class FragmentActivity extends Activity implements SupportActivity {
     // NEW METHODS
     // ------------------------------------------------------------------------
 
-    /**
-     * Use this instead of {@link #onRetainNonConfigurationInstance()}.
-     * Retrieve later with {@link #getLastCustomNonConfigurationInstance()}.
-     */
+    
     public Object onRetainCustomNonConfigurationInstance() {
         return null;
     }
 
-    /**
-     * Return the value previously returned from
-     * {@link #onRetainCustomNonConfigurationInstance()}.
-     */
+    
     public Object getLastCustomNonConfigurationInstance() {
         NonConfigurationInstances nc = (NonConfigurationInstances)
                 getLastNonConfigurationInstance();
         return nc != null ? nc.custom : null;
     }
 
-    /**
-     * @deprecated Use {@link invalidateOptionsMenu}.
-     */
+    
     @Deprecated
     void supportInvalidateOptionsMenu() {
         invalidateOptionsMenu();
     }
 
-    /**
-     * Print the Activity's state into the given stream.  This gets invoked if
-     * you run "adb shell dumpsys activity <activity_component_name>".
-     *
-     * @param prefix Desired prefix to prepend at each line of output.
-     * @param fd The raw file descriptor that the dump is being sent to.
-     * @param writer The PrintWriter to which you should dump your state.  This will be
-     * closed for you after you return.
-     * @param args additional arguments to the dump request.
-     */
+    
     @Override
     public void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
         if (IS_HONEYCOMB) {
@@ -1165,13 +1016,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         }
     }
 
-    /**
-     * Pre-HC, we didn't have a way to determine whether an activity was
-     * being stopped for a config change or not until we saw
-     * onRetainNonConfigurationInstance() called after onStop().  However
-     * we need to know this, to know whether to retain fragments.  This will
-     * tell us what we need to know.
-     */
+    
     void onReallyStop() {
         if (mLoadersStarted) {
             mLoadersStarted = false;
@@ -1191,65 +1036,30 @@ public class FragmentActivity extends Activity implements SupportActivity {
     // ACTION BAR AND ACTION MODE SUPPORT
     // ------------------------------------------------------------------------
 
-    /**
-     * Retrieve a reference to this activity's action bar handler.
-     *
-     * @return The handler for the appropriate action bar, or null.
-     */
+    
     @Override
     public ActionBar getSupportActionBar() {
         initActionBar();
         return mActionBar;
     }
 
-    /**
-     * Notifies the activity that an action mode has finished. Activity
-     * subclasses overriding this method should call the superclass
-     * implementation.
-     *
-     * @param mode The action mode that just finished.
-     */
+    
     @Override
     public void onActionModeFinished(ActionMode mode) {
     }
 
-    /**
-     * Notifies the Activity that an action mode has been started. Activity
-     * subclasses overriding this method should call the superclass
-     * implementation.
-     *
-     * @param mode The new action mode.
-     */
+    
     @Override
     public void onActionModeStarted(ActionMode mode) {
     }
 
-    /**
-     * <p>Give the Activity a chance to control the UI for an action mode
-     * requested by the system.</p>
-     *
-     * <p>Note: If you are looking for a notification callback that an action
-     * mode has been started for this activity, see
-     * {@link #onActionModeStarted(ActionMode)}.</p>
-     *
-     * @param callback The callback that should control the new action mode
-     * @return The new action mode, or null if the activity does not want to
-     * provide special handling for this action mode. (It will be handled by the
-     * system.)
-     */
+    
     @Override
     public ActionMode onWindowStartingActionMode(ActionMode.Callback callback) {
         return null;
     }
 
-    /**
-     * Start an action mode.
-     *
-     * @param callback Callback that will manage lifecycle events for this
-     * context mode
-     * @return The ContextMode that was started, or null if it was cancelled
-     * @see android.support.v4.view.ActionMode
-     */
+    
     @Override
     public final ActionMode startActionMode(final ActionMode.Callback callback) {
         //Give the activity override a chance to handle the action mode
@@ -1273,17 +1083,12 @@ public class FragmentActivity extends Activity implements SupportActivity {
     // FRAGMENT SUPPORT
     // ------------------------------------------------------------------------
 
-    /**
-     * Called when a fragment is attached to the activity.
-     */
+    
     @Override
     public void onAttachFragment(Fragment fragment) {
     }
 
-    /**
-     * Return the FragmentManager for interacting with fragments associated
-     * with this activity.
-     */
+    
     @Override
     public FragmentManager getSupportFragmentManager() {
         //PLEASE let no one be dumb enough to call this too soon...
@@ -1291,10 +1096,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         return mFragments;
     }
 
-    /**
-     * Modifies the standard behavior to allow results to be delivered to fragments.
-     * This imposes a restriction that requestCode be <= 0xffff.
-     */
+    
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
         if (requestCode != -1 && (requestCode&0xffff0000) != 0) {
@@ -1303,9 +1105,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
         super.startActivityForResult(intent, requestCode);
     }
 
-    /**
-     * Called by Fragment.startActivityForResult() to implement its behavior.
-     */
+    
     @Override
     public void startActivityFromFragment(Fragment fragment, Intent intent,
             int requestCode) {
@@ -1334,9 +1134,7 @@ public class FragmentActivity extends Activity implements SupportActivity {
     // LOADER SUPPORT
     // ------------------------------------------------------------------------
 
-    /**
-     * Return the LoaderManager for this fragment, creating it if needed.
-     */
+    
     @Override
     public LoaderManager getSupportLoaderManager() {
         if (mLoaderManager != null) {

@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package android.support.v4.view;
 
@@ -27,16 +13,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.TextView;
 
-/**
- * PagerTitleStrip is a non-interactive indicator of the current, next,
- * and previous pages of a {@link ViewPager}. It is intended to be used as a
- * child view of a ViewPager widget in your XML layout.
- * Add it as a child of a ViewPager in your layout file and set its
- * android:layout_gravity to TOP or BOTTOM to pin it to the top or bottom
- * of the ViewPager. The title from each page is supplied by the method
- * {@link PagerAdapter#getPageTitle(int)} in the adapter supplied to
- * the ViewPager.
- */
+
 public class PagerTitleStrip extends ViewGroup implements ViewPager.Decor {
     //private static final String TAG = "PagerTitleStrip";
 

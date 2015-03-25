@@ -53,15 +53,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
-/**
- * <p>Instances of this interface represent an activity provided by the support
- * library (e.g., {@link FragmentActivity}).</p>
- *
- * <p>Provided are all of the methods which would be available if you were
- * accessing the underlying activity directly and you can safely assume that
- * any instances of this interface can be cast to an {@link Activity}. It is
- * preferred, however, that you call {@link #asActivity()} instead.</p>
- */
+
 public interface SupportActivity extends SherlockActivity {
     public static abstract class InternalCallbacks {
         abstract Handler getHandler();
@@ -74,7 +66,7 @@ public interface SupportActivity extends SherlockActivity {
     InternalCallbacks getInternalCallbacks();
     Activity asActivity();
 
-    /*** Activity methods ***/
+    
     void addContentView(View view, ViewGroup.LayoutParams params);
     void closeContextMenu();
     void closeOptionsMenu();
@@ -185,12 +177,12 @@ public interface SupportActivity extends SherlockActivity {
     void takeKeyEvents(boolean get);
     void unregisterForContextMenu(View view);
 
-    /*** ContextThemeWrapper methods ***/
+    
     //Object getSystemService(String name);
     Resources.Theme getTheme();
     void setTheme(int resId);
 
-    /*** ContextWrapper methods ***/
+    
     //void attachBaseContext(Context base);
     boolean bindService(Intent service, ServiceConnection conn, int flags);
     int checkCallingOrSelfPermission(String permission);
@@ -261,7 +253,7 @@ public interface SupportActivity extends SherlockActivity {
     void unbindService(ServiceConnection conn);
     void unregisterReceiver(BroadcastReceiver receiver);
 
-    /*** Context methods ***/
+    
     String getString(int resId);
     String getString(int resId, Object... formatArgs);
     CharSequence getText(int resId);
@@ -271,10 +263,10 @@ public interface SupportActivity extends SherlockActivity {
     TypedArray obtainStyledAttributes(int resId, int[] attrs);
     TypedArray obtainStyledAttributes(AttributeSet set, int[] attrs, int defStyleAttr, int defStyleRes);
 
-    /*** Activity methods (emulated API 5+) ***/
+    
     void onBackPressed();
 
-    /*** Activity methods (emulated API 11+) ***/
+    
     void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args);
     ActionBar getSupportActionBar(); //getActionBar()
     FragmentManager getSupportFragmentManager(); //getFragmentManager()
@@ -292,7 +284,7 @@ public interface SupportActivity extends SherlockActivity {
     ActionMode startActionMode(ActionMode.Callback callback);
     void startActivityFromFragment(Fragment fragment, Intent intent, int requestCode);
 
-    /*** Parallel helper methods ***/
+    
     boolean requestWindowFeature(long featureId);
     void setProgressBarIndeterminateVisibility(Boolean visible);
 }

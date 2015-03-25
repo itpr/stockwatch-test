@@ -5,15 +5,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-/**
- * @author marco
- * Workaround to be able to scroll text inside a TextView without it required
- * to be focused. For some strange reason there isn't an easy way to do this
- * natively.
- *
- * Original code written by Evan Cummings:
- * http://androidbears.stellarpc.net/?p=185
- */
+
 public final class ScrollingTextView extends TextView {
 
     public ScrollingTextView(Context context, AttributeSet attrs,

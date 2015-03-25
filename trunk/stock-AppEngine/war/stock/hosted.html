@@ -105,12 +105,7 @@ function __gwt_doMakeJavaInvoke(argCount) {
   ); 
 }
 
-/*
- * This is used to create tear-offs of Java methods.  Each function corresponds
- * to exactly one dispId, and also embeds the argument count.  We get the "this"
- * value from the context in which the function is being executed.
- * Function-object identity is preserved by caching in a sparse array.
- */
+
 var __gwt_tearOffs = [];
 var __gwt_tearOffGenerators = [];
 function __gwt_makeTearOff(proxy, dispId, argCount) {

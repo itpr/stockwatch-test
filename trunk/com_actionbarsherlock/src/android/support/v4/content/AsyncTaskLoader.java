@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package android.support.v4.content;
 
@@ -26,13 +12,7 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.concurrent.CountDownLatch;
 
-/**
- * Static library support version of the framework's {@link android.content.AsyncTaskLoader}.
- * Used to write apps that run on platforms prior to Android 3.0.  When running
- * on Android 3.0 or above, this implementation is still used; it does not try
- * to switch to the framework's implementation.  See the framework SDK
- * documentation for a class overview.
- */
+
 public abstract class AsyncTaskLoader<D> extends Loader<D> {
     static final String TAG = "AsyncTaskLoader";
     static final boolean DEBUG = false;
@@ -44,7 +24,7 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
 
         private CountDownLatch done = new CountDownLatch(1);
 
-        /* Runs on a worker thread */
+        
         @Override
         protected D doInBackground(Void... params) {
             if (DEBUG) Log.v(TAG, this + " >>> doInBackground");
@@ -53,7 +33,7 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
             return result;
         }
 
-        /* Runs on the UI thread */
+        
         @Override
         protected void onPostExecute(D data) {
             if (DEBUG) Log.v(TAG, this + " onPostExecute");
@@ -92,13 +72,7 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
         super(context);
     }
 
-    /**
-     * Set amount to throttle updates by.  This is the minimum time from
-     * when the last {@link #onLoadInBackground()} call has completed until
-     * a new load is scheduled.
-     *
-     * @param delayMS Amount of delay, in milliseconds.
-     */
+    
     public void setUpdateThrottle(long delayMS) {
         mUpdateThrottle = delayMS;
         if (delayMS != 0) {
@@ -115,22 +89,7 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
         executePendingTask();
     }
 
-    /**
-     * Attempt to cancel the current load task. See {@link android.os.AsyncTask#cancel(boolean)}
-     * for more info.  Must be called on the main thread of the process.
-     *
-     * <p>Cancelling is not an immediate operation, since the load is performed
-     * in a background thread.  If there is currently a load in progress, this
-     * method requests that the load be cancelled, and notes this is the case;
-     * once the background thread has completed its work its remaining state
-     * will be cleared.  If another load request comes in during this time,
-     * it will be held until the cancelled load is complete.
-     *
-     * @return Returns <tt>false</tt> if the task could not be cancelled,
-     *         typically because it has already completed normally, or
-     *         because {@link #startLoading()} hasn't been called; returns
-     *         <tt>true</tt> otherwise.
-     */
+    
     public boolean cancelLoad() {
         if (DEBUG) Log.v(TAG, "cancelLoad: mTask=" + mTask);
         if (mTask != null) {
@@ -166,10 +125,7 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
         return false;
     }
 
-    /**
-     * Called if the task was canceled before it was completed.  Gives the class a chance
-     * to properly dispose of the result.
-     */
+    
     public void onCanceled(D data) {
     }
 
@@ -223,33 +179,15 @@ public abstract class AsyncTaskLoader<D> extends Loader<D> {
         }
     }
 
-    /**
-     */
+    
     public abstract D loadInBackground();
 
-    /**
-     * Called on a worker thread to perform the actual load. Implementations should not deliver the
-     * result directly, but should return them from this method, which will eventually end up
-     * calling {@link #deliverResult} on the UI thread. If implementations need to process
-     * the results on the UI thread they may override {@link #deliverResult} and do so
-     * there.
-     *
-     * @return Implementations must return the result of their load operation.
-     */
+    
     protected D onLoadInBackground() {
         return loadInBackground();
     }
 
-    /**
-     * Locks the current thread until the loader completes the current load
-     * operation. Returns immediately if there is no load operation running.
-     * Should not be called from the UI thread: calling it from the UI
-     * thread would cause a deadlock.
-     * <p>
-     * Use for testing only.  <b>Never</b> call this from a UI thread.
-     *
-     * @hide
-     */
+    
     public void waitForLoader() {
         LoadTask task = mTask;
         if (task != null) {

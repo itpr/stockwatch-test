@@ -1,19 +1,4 @@
-/*
- * Copyright (C) 2006 The Android Open Source Project
- * Copyright (C) 2011 Jake Wharton
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package com.actionbarsherlock.internal.view.menu;
 
@@ -24,14 +9,7 @@ import android.support.v4.view.SubMenu;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 
-/**
- * <p>Interface for direct access to a previously created menu item.</p>
- *
- * <p>An Item is returned by calling one of the {@link Menu#add(int)}
- * methods.</p>
- *
- * <p>For a feature set of specific menu types, see {@link Menu}.</p>
- */
+
 public final class MenuItemWrapper implements MenuItem {
     private static final class HoneycombMenuItem {
         static View getActionView(android.view.MenuItem item) {
@@ -51,30 +29,16 @@ public final class MenuItemWrapper implements MenuItem {
         }
     }
 
-    /** Native {@link android.view.MenuItem} whose methods are wrapped. */
+    
     private final android.view.MenuItem mMenuItem;
 
-    /**
-     * Constructor used to create a wrapper to a native
-     * {@link android.view.MenuItem} so we can return the same type for native
-     * and {@link MenuItemImpl} instances, the latter of which will override
-     * all the methods defined in this base class.
-     *
-     * @param menuItem Native instance.
-     */
+    
     public MenuItemWrapper(android.view.MenuItem menuItem) {
         mMenuItem = menuItem;
     }
 
 
-    /**
-     * Returns the currently set action view for this menu item.
-     *
-     * @return The item's action view
-     * @see #setActionView(int)
-     * @see #setActionView(View)
-     * @see #setShowAsAction(int)
-     */
+    
     public View getActionView() {
         if (mMenuItem != null) {
             return HoneycombMenuItem.getActionView(mMenuItem);
@@ -82,15 +46,7 @@ public final class MenuItemWrapper implements MenuItem {
         return null;
     }
 
-    /**
-     * Set an action view for this menu item. An action view will be displayed
-     * in place of an automatically generated menu item element in the UI when
-     * this item is shown as an action within a parent.
-     *
-     * @param resId Layout resource to use for presenting this item to the user.
-     * @return This Item so additional setters can be called.
-     * @see #setActionView(View)
-     */
+    
     public MenuItem setActionView(int resId) {
         if (mMenuItem != null) {
             HoneycombMenuItem.setActionView(mMenuItem, resId);
@@ -98,15 +54,7 @@ public final class MenuItemWrapper implements MenuItem {
         return this;
     }
 
-    /**
-     * Set an action view for this menu item. An action view will be displayed
-     * in place of an automatically generated menu item element in the UI when
-     * this item is shown as an action within a parent.
-     *
-     * @param view View to use for presenting this item to the user.
-     * @return This Item so additional setters can be called.
-     * @see #setActionView(int)
-     */
+    
     public MenuItem setActionView(View view) {
         if (mMenuItem != null) {
             HoneycombMenuItem.setActionView(mMenuItem, view);
@@ -114,20 +62,7 @@ public final class MenuItemWrapper implements MenuItem {
         return this;
     }
 
-    /**
-     * Sets how this item should display in the presence of an Action Bar. The
-     * parameter actionEnum is a flag set. One of
-     * {@link #SHOW_AS_ACTION_ALWAYS}, {@link #SHOW_AS_ACTION_IF_ROOM}, or
-     * {@link #SHOW_AS_ACTION_NEVER} should be used, and you may optionally OR
-     * the value with {@link #SHOW_AS_ACTION_WITH_TEXT}.
-     * {@link #SHOW_AS_ACTION_WITH_TEXT} requests that when the item is shown as
-     * an action, it should be shown with a text label.
-     *
-     * @param actionEnum How the item should display. One of
-     * {@link #SHOW_AS_ACTION_ALWAYS}, {@link #SHOW_AS_ACTION_IF_ROOM}, or
-     * {@link #SHOW_AS_ACTION_NEVER}. {@link #SHOW_AS_ACTION_NEVER} is the
-     * default.
-     */
+    
     public void setShowAsAction(int actionEnum) {
         if (mMenuItem != null) {
             HoneycombMenuItem.setShowAsAction(mMenuItem, actionEnum);
@@ -272,12 +207,7 @@ public final class MenuItemWrapper implements MenuItem {
         return this;
     }
 
-    /**
-     * Set a custom listener for invocation of this menu item.
-     *
-     * @param menuItemClickListener The object to receive invokations.
-     * @return This Item so additional setters can be called.
-     */
+    
     public MenuItem setOnMenuItemClickListener(OnMenuItemClickListener menuItemClickListener) {
         mMenuItem.setOnMenuItemClickListener(menuItemClickListener);
         return this;

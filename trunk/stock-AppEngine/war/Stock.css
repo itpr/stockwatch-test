@@ -1,4 +1,4 @@
-/** Add css rules here for your application. */
+
 html,body {
 	padding: 0px;
 	margin: 15px;
@@ -147,17 +147,39 @@ button.centerbtn:active {
 	margin: 0 auto;
 }
 .gwt-Button {
-  margin: 0;
-  padding: 5px 7px;
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
   text-decoration: none;
-  cursor: pointer;
-  cursor: hand;
-  font-size:small;
-  border:1px solid #bbb;
-  border-bottom: 1px solid #a0a0a0;
-  border-radius: 3px;
- -moz-border-radius: 3px;
 }
+
+.gwt-MenuBar .gwt-MenuItem {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;	
+}
+
 .mgwt-List {
 	padding: 5px;
 }

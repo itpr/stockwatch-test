@@ -1,20 +1,11 @@
-/*******************************************************************************
- * Copyright 2011 Google Inc. All Rights Reserved.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+
 package com.stock;
 
 import com.google.android.c2dm.C2DMessaging;
+import com.stock.R;
+import com.stock.R.id;
+import com.stock.R.layout;
+import com.stock.R.string;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
@@ -29,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.SharedPreferences.Editor;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
@@ -51,39 +41,25 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-/**
- * Account selections activity - handles device registration and unregistration.
- */
+
 public class AccountsActivity extends Activity {
 
-    /**
-     * Tag for logging.
-     */
+    
     private static final String TAG = "AccountsActivity";
 
-    /**
-     * Cookie name for authorization.
-     */
+    
     private static final String AUTH_COOKIE_NAME = "SACSID";
 
-    /**
-     * The selected position in the ListView of accounts.
-     */
+    
     private int mAccountSelectedPosition = 0;
 
-    /**
-     * True if we are waiting for App Engine authorization.
-     */
+    
     private boolean mPendingAuth = false;
 
-    /**
-     * The current context.
-     */
+    
     private Context mContext = this;
 
-    /**
-     * Begins the activity.
-     */
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,9 +75,7 @@ public class AccountsActivity extends Activity {
         }
     }
 
-    /**
-     * Resumes the activity.
-     */
+    
     @Override
     protected void onResume() {
         super.onResume();
@@ -118,9 +92,7 @@ public class AccountsActivity extends Activity {
 
     // Manage UI Screens
 
-    /**
-     * Sets up the 'connect' screen content.
-     */
+    
     private void setConnectScreenContent() {
         List<String> accounts = getGoogleAccounts();
         if (accounts.size() == 0) {
@@ -166,9 +138,7 @@ public class AccountsActivity extends Activity {
         }
     }
 
-    /**
-     * Sets up the 'disconnected' screen.
-     */
+    
     private void setDisconnectScreenContent() {
         final SharedPreferences prefs = Util.getSharedPreferences(mContext);
         String accountName = prefs.getString(Util.ACCOUNT_NAME, "Unknown");
@@ -191,9 +161,7 @@ public class AccountsActivity extends Activity {
         });
     }
 
-    /**
-     * Sets the screen content based on the screen id.
-     */
+    
     private void setScreenContent(int screenId) {
         setContentView(screenId);
         switch (screenId) {
@@ -208,11 +176,7 @@ public class AccountsActivity extends Activity {
 
     // Register and Unregister
 
-    /**
-     * Registers for C2DM messaging with the given account name.
-     * 
-     * @param accountName a String containing a Google account name
-     */
+    
     private void register(final String accountName) {
         // Store the account name in shared preferences
         final SharedPreferences prefs = Util.getSharedPreferences(mContext);
@@ -280,11 +244,7 @@ public class AccountsActivity extends Activity {
 
     // Utility Methods
 
-    /**
-     * Retrieves the authorization cookie associated with the given token. This
-     * method should only be used when running against a production appengine
-     * backend (as opposed to a dev mode server).
-     */
+    
     private String getAuthCookie(String authToken) {
         DefaultHttpClient httpClient = (DefaultHttpClient) new TrustingHttpClient().getNewHttpClient();
         try {
@@ -316,10 +276,7 @@ public class AccountsActivity extends Activity {
         return null;
     }
 
-    /**
-     * Returns a list of registered Google account names. If no Google accounts
-     * are registered on the device, a zero-length list is returned.
-     */
+    
     private List<String> getGoogleAccounts() {
         ArrayList<String> result = new ArrayList<String>();
         Account[] accounts = AccountManager.get(mContext).getAccounts();

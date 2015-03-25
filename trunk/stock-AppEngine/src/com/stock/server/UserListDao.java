@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
-
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -13,7 +12,6 @@ import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.helper.DAOBase;
-import com.stock.server.entities.Stock;
 import com.stock.server.entities.UserList;
 
 public class UserListDao extends DAOBase

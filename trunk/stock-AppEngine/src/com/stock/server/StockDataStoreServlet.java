@@ -4,74 +4,60 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.api.datastore.Entity;
 import com.stock.server.entities.Quote;
 import com.stock.server.entities.Stock;
 
-@SuppressWarnings("serial")
+
 public class StockDataStoreServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 7973217277613149944L;
+	
+	private static String QUOTE_RGX = "(\\d+),(\\d+\\.\\d+),(\\d+\\.\\d+),(\\d+\\.\\d+),(\\d+\\.\\d+),(\\d+)";
+
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.setContentType("text/plain");
 		QuoteDao quoteDao = new QuoteDao();
-		StockDao dao = new StockDao();
-		//Stock st = new Stock();
-		//st.setName("wig20");
-		//dao.save(st);
-		List<Stock> stocks = dao.getAll();
-		String tmp = "";
-		for(Stock s:stocks){
-			tmp+=s.getName().toLowerCase()+"+";
-		}
-		tmp = tmp.substring(0, tmp.length()-1);
+		StockDao stockDao = new StockDao();
+		List<Quote> quotes = new ArrayList<Quote>();
 		
-		URL stooq = new URL("http://stooq.pl/q/l/?s="+tmp+"&f=sd2t2ohlcv&h&e=csv");
-		
-		BufferedReader reader = new BufferedReader(new InputStreamReader(stooq.openStream()));
-		String inputLine = reader.readLine();
-		while ((inputLine = reader.readLine()) != null){
-			StringTokenizer tokenizer = new StringTokenizer(inputLine, ",");
-			int len = 8;
-			String [] quote = new String[len];
-		    int i = 0;
-		    while(tokenizer.hasMoreTokens()){
-		    	quote[i] = tokenizer.nextToken();
-		    	i++;
-		    }
-		    DateFormat df = DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.MEDIUM,new Locale("PL"));
-		    Date date = null;
-		    try {
-				date = df.parse(quote[1]+" "+quote[2]);
-			} catch (ParseException e) {
-				e.printStackTrace();
+		URL url;
+		try {
+			for(Stock stock : stockDao.getAll()){
+				url = new URL("http://chartapi.finance.yahoo.com/instrument/1.0/"+ stock.getShortName() +"/chartdata;type=quote;range=1y/csv");
+	
+				BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+				String inputLine = null;
+				while ((inputLine = reader.readLine()) != null){
+				
+					Matcher matcher = Pattern.compile(QUOTE_RGX).matcher(inputLine);
+					if(matcher.find()){
+						Quote quote = new Quote();
+						String dateString = matcher.group(1);
+						Date date = new SimpleDateFormat("yyyyMMdd").parse(dateString);
+						quote.setDate(date);
+						quote.setClose(Double.parseDouble(matcher.group(2)));
+						quote.setHigh(Double.parseDouble(matcher.group(3)));
+						quote.setLow(Double.parseDouble(matcher.group(4)));
+						quote.setOpen(Double.parseDouble(matcher.group(5)));
+						quote.setVolume(Integer.parseInt(matcher.group(6)));
+						quotes.add(quote);
+					}
+				}
 			}
-		    Quote qt= new Quote(); 
-		    qt.setDate(date);
-		    qt.setOpen(Double.valueOf(quote[3]));
-		    qt.setHigh(Double.valueOf(quote[4]));
-		    qt.setLow(Double.valueOf(quote[5]));
-		    qt.setClose(Double.valueOf(quote[6]));
-		    qt.setVolume(Integer.valueOf(quote[7]));
-		    for(Stock s:stocks){
-		    	if(s.getName().toLowerCase().equals(quote[0].toLowerCase())){
-		    		qt.setSymbol(s.getId());
-		    		break;
-		    	}
-		    }
-		    quoteDao.save(qt);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-			  
-		
-		reader.close();
 	}
 }

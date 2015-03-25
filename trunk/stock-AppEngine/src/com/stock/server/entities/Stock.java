@@ -1,21 +1,13 @@
 package com.stock.server.entities;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.PostLoad;
-import javax.persistence.Transient;
-
-import com.googlecode.objectify.Objectify;
-import com.googlecode.objectify.ObjectifyService;
-import com.googlecode.objectify.Query;
 import com.googlecode.objectify.annotation.Entity;
 
 
 @Entity
 public class Stock extends DatastoreObject
-{
-	private String name;	
+{	
+	private String name;
+	private String shortName;
 	private Quote quote;
 	
 	
@@ -37,6 +29,14 @@ public class Stock extends DatastoreObject
 
 	public void setQuote(Quote quote) {
 		this.quote = quote;
+	}
+
+	public String getShortName() {
+		return shortName;
+	}
+
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
 	}
 	
 

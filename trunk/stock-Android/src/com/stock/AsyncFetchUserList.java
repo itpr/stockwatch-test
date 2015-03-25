@@ -64,7 +64,7 @@ public class AsyncFetchUserList extends AsyncTask<Long, Void, List<UserListProxy
 
 	@Override
 	protected void onPostExecute(List<UserListProxy> result) {
-		if(fragment.getUserListCount()>0){
+		if(fragment.getUserListCount()>0 && result.size()>0){
 			fragment.addUserList(result.get(0));
 		}else{
 			fragment.setUserLists(result);

@@ -2,12 +2,11 @@ package com.stock.server.entities;
 
 import java.util.Date;
 
-import com.googlecode.objectify.Key;
 import com.googlecode.objectify.annotation.Entity;
 
 
 @Entity
-public class Quote extends DatastoreObject
+public class Quote extends DatastoreObject implements Comparable<Quote>
 {
 	private Long symbol;
 	private Date date;
@@ -75,6 +74,11 @@ public class Quote extends DatastoreObject
 
 	public void setVolume(Integer volume) {
 		this.volume = volume;
+	}
+
+	@Override
+	public int compareTo(Quote o) {
+		return o.getDate().compareTo(this.getDate());
 	}	
 
 }

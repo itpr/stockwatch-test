@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.AsyncTask;
+
 import com.stock.client.MyRequestFactory;
 import com.stock.client.MyRequestFactory.UserListRequest;
 import com.stock.shared.StockProxy;

@@ -1,41 +1,18 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package android.support.v4.app;
 
-/**
- * A copy of Honeycomb's {@link android.util.SparseArray}, that
- * provides a removeAt() method.
- */
+
 public class HCSparseArray<E> {
     private static final Object DELETED = new Object();
     private boolean mGarbage = false;
 
-    /**
-     * Creates a new SparseArray containing no mappings.
-     */
+    
     public HCSparseArray() {
         this(10);
     }
 
-    /**
-     * Creates a new SparseArray containing no mappings that will not
-     * require any additional memory allocation to store the specified
-     * number of mappings.
-     */
+    
     public HCSparseArray(int initialCapacity) {
         initialCapacity = idealIntArraySize(initialCapacity);
 
@@ -44,18 +21,12 @@ public class HCSparseArray<E> {
         mSize = 0;
     }
 
-    /**
-     * Gets the Object mapped from the specified key, or <code>null</code>
-     * if no such mapping has been made.
-     */
+    
     public E get(int key) {
         return get(key, null);
     }
 
-    /**
-     * Gets the Object mapped from the specified key, or the specified Object
-     * if no such mapping has been made.
-     */
+    
     @SuppressWarnings("unchecked")
     public E get(int key, E valueIfKeyNotFound) {
         int i = binarySearch(mKeys, 0, mSize, key);
@@ -67,9 +38,7 @@ public class HCSparseArray<E> {
         }
     }
 
-    /**
-     * Removes the mapping from the specified key, if there was any.
-     */
+    
     public void delete(int key) {
         int i = binarySearch(mKeys, 0, mSize, key);
 
@@ -81,16 +50,12 @@ public class HCSparseArray<E> {
         }
     }
 
-    /**
-     * Alias for {@link #delete(int)}.
-     */
+    
     public void remove(int key) {
         delete(key);
     }
 
-    /**
-     * Removes the mapping at the specified index.
-     */
+    
     public void removeAt(int index) {
         if (mValues[index] != DELETED) {
             mValues[index] = DELETED;
@@ -125,11 +90,7 @@ public class HCSparseArray<E> {
         // Log.e("SparseArray", "gc end with " + mSize);
     }
 
-    /**
-     * Adds a mapping from the specified key to the specified value,
-     * replacing the previous mapping from the specified key if there
-     * was one.
-     */
+    
     public void put(int key, E value) {
         int i = binarySearch(mKeys, 0, mSize, key);
 
@@ -177,10 +138,7 @@ public class HCSparseArray<E> {
         }
     }
 
-    /**
-     * Returns the number of key-value mappings that this SparseArray
-     * currently stores.
-     */
+    
     public int size() {
         if (mGarbage) {
             gc();
@@ -189,11 +147,7 @@ public class HCSparseArray<E> {
         return mSize;
     }
 
-    /**
-     * Given an index in the range <code>0...size()-1</code>, returns
-     * the key from the <code>index</code>th key-value mapping that this
-     * SparseArray stores.
-     */
+    
     public int keyAt(int index) {
         if (mGarbage) {
             gc();
@@ -202,11 +156,7 @@ public class HCSparseArray<E> {
         return mKeys[index];
     }
 
-    /**
-     * Given an index in the range <code>0...size()-1</code>, returns
-     * the value from the <code>index</code>th key-value mapping that this
-     * SparseArray stores.
-     */
+    
     @SuppressWarnings("unchecked")
     public E valueAt(int index) {
         if (mGarbage) {
@@ -216,11 +166,7 @@ public class HCSparseArray<E> {
         return (E) mValues[index];
     }
 
-    /**
-     * Given an index in the range <code>0...size()-1</code>, sets a new
-     * value for the <code>index</code>th key-value mapping that this
-     * SparseArray stores.
-     */
+    
     public void setValueAt(int index, E value) {
         if (mGarbage) {
             gc();
@@ -229,11 +175,7 @@ public class HCSparseArray<E> {
         mValues[index] = value;
     }
 
-    /**
-     * Returns the index for which {@link #keyAt} would return the
-     * specified key, or a negative number if the specified
-     * key is not mapped.
-     */
+    
     public int indexOfKey(int key) {
         if (mGarbage) {
             gc();
@@ -242,14 +184,7 @@ public class HCSparseArray<E> {
         return binarySearch(mKeys, 0, mSize, key);
     }
 
-    /**
-     * Returns an index for which {@link #valueAt} would return the
-     * specified key, or a negative number if no keys map to the
-     * specified value.
-     * Beware that this is a linear search, unlike lookups by key,
-     * and that multiple keys can map to the same value and this will
-     * find only one of them.
-     */
+    
     public int indexOfValue(E value) {
         if (mGarbage) {
             gc();
@@ -262,9 +197,7 @@ public class HCSparseArray<E> {
         return -1;
     }
 
-    /**
-     * Removes all key-value mappings from this SparseArray.
-     */
+    
     public void clear() {
         int n = mSize;
         Object[] values = mValues;
@@ -277,10 +210,7 @@ public class HCSparseArray<E> {
         mGarbage = false;
     }
 
-    /**
-     * Puts a key/value pair into the array, optimizing for the case where
-     * the key is greater than all existing keys in the array.
-     */
+    
     public void append(int key, E value) {
         if (mSize != 0 && key <= mKeys[mSize - 1]) {
             put(key, value);

@@ -9,7 +9,12 @@
 		}
 	</ui:style>
 
-	<g:FlowPanel ui:field="panel">
-		  
-	</g:FlowPanel>
+	<g:FlowPanel>
+		
+		<g:HorizontalPanel horizontalAlignment="ALIGN_LEFT" spacing="10">
+			<g:MenuBar ui:field="menu"/>
+		</g:HorizontalPanel>
+		<g:VerticalPanel ui:field="panel" width="100%"/>		 
+	</g:FlowPanel> 
+	
 </ui:UiBinder>

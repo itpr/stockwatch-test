@@ -1,31 +1,12 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package android.support.v4.util;
 
 import java.io.PrintWriter;
 
-/**
- * Helper for accessing features in {@link android.util.TimeUtils}
- * introduced after API level 4 in a backwards compatible fashion.
- *
- * @hide
- */
+
 public class TimeUtils {
-    /** @hide Field length that can hold 999 days of time */
+    
     public static final int HUNDRED_DAY_FIELD_LEN = 19;
 
     private static final int SECONDS_PER_MINUTE = 60;
@@ -143,7 +124,7 @@ public class TimeUtils {
         return pos + 1;
     }
 
-    /** @hide Just for debugging; not internationalized. */
+    
     public static void formatDuration(long duration, StringBuilder builder) {
         synchronized (sFormatSync) {
             int len = formatDurationLocked(duration, 0);
@@ -151,7 +132,7 @@ public class TimeUtils {
         }
     }
 
-    /** @hide Just for debugging; not internationalized. */
+    
     public static void formatDuration(long duration, PrintWriter pw, int fieldLen) {
         synchronized (sFormatSync) {
             int len = formatDurationLocked(duration, fieldLen);
@@ -159,12 +140,12 @@ public class TimeUtils {
         }
     }
 
-    /** @hide Just for debugging; not internationalized. */
+    
     public static void formatDuration(long duration, PrintWriter pw) {
         formatDuration(duration, pw, 0);
     }
 
-    /** @hide Just for debugging; not internationalized. */
+    
     public static void formatDuration(long time, long now, PrintWriter pw) {
         if (time == 0) {
             pw.print("--");

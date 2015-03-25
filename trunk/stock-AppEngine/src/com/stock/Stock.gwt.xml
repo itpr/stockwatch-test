@@ -24,6 +24,7 @@
   <!-- Specify the paths for translatable code                        -->
   <source path='client'/>
   <source path='shared'/>
+  <source path='charts'/>
   
   <replace-with class="com.stock.client.ClientFactoryImpl">
 	 <when-type-is class="com.stock.client.ClientFactory"/>
