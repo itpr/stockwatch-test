@@ -36,7 +36,7 @@ public class ROC extends AbstractIndicator<WebPlatform>{
 	    data.addColumn(ColumnType.NUMBER, "Value");
 	    data.addRows(result.size());
 	    for(int i=0;i<timePeriod.getTicks();i++){
-	    	data.setValue(i, 0, quotes.get(i).getDate());
+	    	data.setValue(i, 0, quotes.get(quotes.size()-timePeriod.getTicks() + i).getDate());
 	    	data.setValue(i, 1, result.get(i));
 	    }
 	    return data;

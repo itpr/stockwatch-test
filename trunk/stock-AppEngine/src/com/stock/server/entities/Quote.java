@@ -3,6 +3,7 @@ package com.stock.server.entities;
 import java.util.Date;
 
 import com.googlecode.objectify.annotation.Entity;
+import com.stock.server.QuoteType;
 
 
 @Entity
@@ -15,6 +16,7 @@ public class Quote extends DatastoreObject implements Comparable<Quote>
 	private Double low;
 	private Double close;
 	private Integer volume;
+	private QuoteType quoteType;
 
 	public Quote(){
 		
@@ -75,10 +77,18 @@ public class Quote extends DatastoreObject implements Comparable<Quote>
 	public void setVolume(Integer volume) {
 		this.volume = volume;
 	}
+	
+	public QuoteType getQuoteType() {
+		return quoteType;
+	}
+
+	public void setQuoteType(QuoteType quoteType) {
+		this.quoteType = quoteType;
+	}
 
 	@Override
 	public int compareTo(Quote o) {
 		return o.getDate().compareTo(this.getDate());
-	}	
+	}
 
 }

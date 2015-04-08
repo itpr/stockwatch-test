@@ -1,9 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <cronentries>
-<!--   <cron> -->
-<!--     <url>/stockdatastore</url> -->
-<!--     <description>Repopulate the cache every 5 minutes</description> -->
-<!--     <schedule>every 5 minutes from 9:00 to 18:00</schedule> -->
-<!--     <timezone>Europe/Warsaw</timezone> -->
-<!--   </cron> -->
+  <cron>
+     <url>/minutestockdatastore</url>
+     <description>Repopulate every 5 minutes</description>
+     <schedule>every 5 minutes from 9:00 to 18:00</schedule>
+     <timezone>America/New_York</timezone>
+   </cron>
+	<cron>
+     <url>/dailystockdatastore</url>
+     <description>Repopulate once a day</description>
+     <schedule>every day 19:00</schedule>
+     <timezone>America/New_York</timezone>
+   </cron>
 </cronentries>

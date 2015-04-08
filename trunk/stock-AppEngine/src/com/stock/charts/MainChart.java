@@ -31,8 +31,8 @@ public class MainChart extends AbstractChart<WebPlatform>{
 	    data.addColumn(ColumnType.NUMBER, "Value");
 	    data.addRows(quotes.size());
 	    for(int i=0;i<timePeriod.getTicks();i++){
-	    	data.setValue(i, 0, quotes.get(i).getDate());
-	    	data.setValue(i, 1, quotes.get(i).getClose());
+	    	data.setValue(i, 0, quotes.get(quotes.size()-timePeriod.getTicks() + i).getDate());
+	    	data.setValue(i, 1, quotes.get(quotes.size()-timePeriod.getTicks() + i).getClose());
 	    }
 	    return data;
 	}
